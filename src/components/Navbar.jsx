@@ -19,7 +19,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+    <nav className="sticky top-0 z-50 bg-white dark:bg-black border-b border-gray-200 dark:border-gray-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -38,7 +38,7 @@ export default function Navbar() {
               className="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               aria-label="Toggle theme"
             >
-              {isDark ? "☀️" : "🌙"}
+              {isDark ? "🌝" : "🌚"}
             </button>
 
             {isAuthenticated ? (
@@ -74,9 +74,9 @@ export default function Navbar() {
                 </Link>
                 <Link
                   to="/register"
-                  className="text-sm bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-4 py-2 rounded-lg hover:opacity-90 transition-opacity"
+                  className="text-sm font-medium bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-4 py-2 rounded-4xl hover:opacity-90 transition-opacity"
                 >
-                  Get started
+                  Sing In
                 </Link>
               </>
             )}
