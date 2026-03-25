@@ -3,6 +3,7 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import DashboardHeader from "./components/DashboardHeader";
 import { getFolders } from "../../services/folderService";
 import { getResources } from "../../services/resourceService";
+import AddResourceModal from "./components/AddResourceModal";
 
 export default function Dashboard() {
   const [folders, setFolders] = useState([]);
@@ -10,6 +11,7 @@ export default function Dashboard() {
   const [activeFolderId, setActiveFolderId] = useState(null);
   const [counts, setCounts] = useState({ all: 0, tagged: 0, untagged: 0 });
   const [search, setSearch] = useState("");
+  const [showAddResource, setShowAddResource] = useState(false);
 
   useEffect(() => {
     fetchFolders();
@@ -63,7 +65,7 @@ export default function Dashboard() {
           folders={folders}
           onFolderSelect={setActiveFolderId}
           onSearch={setSearch}
-          onAddResource={() => {}}
+          onAddResource={() => setShowAddResource(true)}
         />
         <main className="flex-1 p-8">
           <p className="text-gray-400">
@@ -71,6 +73,16 @@ export default function Dashboard() {
           </p>
         </main>
       </div>
+      {showAddResource && (
+        <AddResourceModal
+          folders={folders}
+          activeFolderId={activeFolderId}
+          onClose={() => setShowAddResource(false)}
+          onSuccess={() => {
+            fetchCounts();
+          }}
+        />
+      )}
     </div>
   );
 }
