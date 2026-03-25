@@ -34,6 +34,8 @@ export default function Sidebar({
   const { isDark, toggleTheme } = useTheme();
   const [editingFolder, setEditingFolder] = useState(null);
   const [editName, setEditName] = useState("");
+  const [creatingSubfolder, setCreatingSubfolder] = useState(null); // folder.id del padre
+  const [subfolderName, setSubfolderName] = useState("");
 
   const handleLogout = async () => {
     try {
@@ -70,6 +72,19 @@ export default function Sidebar({
       await updateFolder(id, { name: editName });
       setEditingFolder(null);
       setEditName("");
+      onFoldersChange();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleCreateSubfolder = async (e, parentId) => {
+    e.preventDefault();
+    if (!subfolderName.trim()) return;
+    try {
+      await createFolder({ name: subfolderName, parent_id: parentId });
+      setCreatingSubfolder(null);
+      setSubfolderName("");
       onFoldersChange();
     } catch (err) {
       console.error(err);
@@ -207,8 +222,6 @@ export default function Sidebar({
                 }`}
               >
                 <span className="truncate">📁 {folder.name}</span>
-
-                {/* Counter / Menu */}
                 <span
                   onClick={(e) => {
                     e.stopPropagation();
@@ -230,7 +243,113 @@ export default function Sidebar({
               </button>
             )}
 
-            {/* Mini menu */}
+            {/* Subfolders anidados */}
+            {folder.folders?.length > 0 && (
+              <div className="ml-4 mt-1 space-y-1">
+                {folder.folders.map((sub) => (
+                  <div key={sub.id} className="relative group">
+                    {editingFolder === sub.id ? (
+                      <input
+                        type="text"
+                        value={editName}
+                        onChange={(e) => setEditName(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") handleUpdateFolder(sub.id);
+                          if (e.key === "Escape") {
+                            setEditingFolder(null);
+                            setEditName("");
+                          }
+                        }}
+                        onBlur={() => {
+                          setEditingFolder(null);
+                          setEditName("");
+                        }}
+                        autoFocus
+                        className="w-full px-3 py-2 text-sm rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-gray-50 dark:focus:ring-gray-600"
+                      />
+                    ) : (
+                      <button
+                        onClick={() => onFolderSelect(sub.id)}
+                        onDoubleClick={() => {
+                          setEditingFolder(sub.id);
+                          setEditName(sub.name);
+                          setFolderMenu(null);
+                        }}
+                        className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors flex items-center justify-between ${
+                          activeFolderId === sub.id
+                            ? "bg-stone-100 dark:bg-gray-800 text-gray-900 dark:text-white"
+                            : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900"
+                        }`}
+                      >
+                        <span className="truncate">📁 {sub.name}</span>
+                        <span
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setFolderMenu(
+                              folderMenu === sub.id ? null : sub.id,
+                            );
+                          }}
+                          className="text-xs text-gray-400 hidden group-hover:block"
+                        >
+                          •••
+                        </span>
+                      </button>
+                    )}
+
+                    {/* Mini menu subfolder */}
+                    {folderMenu === sub.id && (
+                      <div className="absolute right-0 top-8 z-10 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg py-1 w-40">
+                        <button
+                          onClick={() => {
+                            setEditingFolder(sub.id);
+                            setEditName(sub.name);
+                            setFolderMenu(null);
+                          }}
+                          className="w-full text-left px-4 py-2 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                        >
+                          Edit name
+                        </button>
+                        <div className="border-t border-gray-100 dark:border-gray-700 my-1" />
+                        <button
+                          onClick={() => handleDeleteFolder(sub.id)}
+                          className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Input crear subfolder */}
+            {creatingSubfolder === folder.id && (
+              <div className="ml-4 mt-1">
+                <form onSubmit={(e) => handleCreateSubfolder(e, folder.id)}>
+                  <input
+                    type="text"
+                    value={subfolderName}
+                    onChange={(e) => setSubfolderName(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Escape") {
+                        setCreatingSubfolder(null);
+                        setSubfolderName("");
+                      }
+                    }}
+                    onBlur={() => {
+                      setCreatingSubfolder(null);
+                      setSubfolderName("");
+                    }}
+                    placeholder="Subfolder name"
+                    autoFocus
+                    className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-400"
+                  />
+                </form>
+              </div>
+            )}
+
+            {/* Mini menu carpeta padre */}
             {folderMenu === folder.id && (
               <div className="absolute right-0 top-8 z-10 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg py-1 w-40">
                 <button
@@ -245,7 +364,7 @@ export default function Sidebar({
                 </button>
                 <button
                   onClick={() => {
-                    // next step - Create Subfolder
+                    setCreatingSubfolder(folder.id);
                     setFolderMenu(null);
                   }}
                   className="w-full text-left px-4 py-2 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
