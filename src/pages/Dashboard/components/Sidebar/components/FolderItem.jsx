@@ -1,3 +1,9 @@
+import {
+  FolderIcon,
+  FolderOpenIcon,
+  RectangleGroupIcon,
+} from "@heroicons/react/24/outline";
+
 export default function FolderItem({
   folder,
   editingFolder,
@@ -15,9 +21,10 @@ export default function FolderItem({
   handleUpdateFolder,
   handleDeleteFolder,
   handleCreateSubfolder,
+  isRoot = true,
 }) {
   return (
-    <div className="relative group">
+    <div className="relative">
       {/* Edition Mode */}
       {editingFolder === folder.id ? (
         <input
@@ -43,6 +50,7 @@ export default function FolderItem({
           className="w-full px-3 py-2 text-sm rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-gray-50 dark:focus:ring-gray-600"
         />
       ) : (
+        // "group" va en el botón, no en el div padre, así el hover no se contagia a subcarpetas
         <button
           onClick={() => onFolderSelect(folder.id)}
           onDoubleClick={() => {
@@ -50,22 +58,35 @@ export default function FolderItem({
             setEditName(folder.name);
             setFolderMenu(null);
           }}
-          className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors flex items-center justify-between ${
+          className={`group w-full text-left px-3 py-2 rounded-lg text-sm transition-colors flex items-center justify-between ${
             activeFolderId === folder.id
               ? "bg-stone-100 dark:bg-gray-800 text-gray-900 dark:text-white"
-              : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900"
+              : "text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-gray-900 dark:hover:text-white"
           }`}
         >
-          <span className="truncate">📁 {folder.name}</span>
-          <span
-            onClick={(e) => {
-              e.stopPropagation();
-              setFolderMenu(folderMenu === folder.id ? null : folder.id);
-            }}
-            className="text-xs text-gray-400 group-hover:hidden"
-          >
-            {folder.total_resources_count}
+          <span className="truncate flex items-center gap-2">
+            {isRoot ? (
+              <FolderOpenIcon className="w-5 h-5 shrink-0" />
+            ) : (
+              <FolderIcon className="w-5 h-5 shrink-0" />
+            )}
+            {folder.name}
           </span>
+
+          {/* Contador solo en carpetas raíz */}
+          {isRoot && (
+            <span
+              onClick={(e) => {
+                e.stopPropagation();
+                setFolderMenu(folderMenu === folder.id ? null : folder.id);
+              }}
+              className="text-xs text-gray-400 group-hover:hidden"
+            >
+              {folder.total_resources_count}
+            </span>
+          )}
+
+          {/* ••• en todos los niveles al hacer hover */}
           <span
             onClick={(e) => {
               e.stopPropagation();
@@ -100,6 +121,7 @@ export default function FolderItem({
               handleUpdateFolder={handleUpdateFolder}
               handleDeleteFolder={handleDeleteFolder}
               handleCreateSubfolder={handleCreateSubfolder}
+              isRoot={false}
             />
           ))}
         </div>
@@ -151,15 +173,17 @@ export default function FolderItem({
           >
             Edit name
           </button>
-          <button
-            onClick={() => {
-              setCreatingSubfolder(folder.id);
-              setFolderMenu(null);
-            }}
-            className="w-full text-left px-4 py-2 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-          >
-            Create subfolder
-          </button>
+          {isRoot && (
+            <button
+              onClick={() => {
+                setCreatingSubfolder(folder.id);
+                setFolderMenu(null);
+              }}
+              className="w-full text-left px-4 py-2 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+            >
+              Create subfolder
+            </button>
+          )}
           <div className="border-t border-gray-100 dark:border-gray-700 my-1" />
           <button
             onClick={() => handleDeleteFolder(folder.id)}

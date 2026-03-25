@@ -65,19 +65,19 @@ export default function Sidebar({
       key: "all",
       label: "All",
       count: counts.all,
-      icon: <ArchiveBoxIcon className="w-4 h-4" />,
+      icon: <ArchiveBoxIcon className="w-5 h-5" />,
     },
     {
       key: "tagged",
       label: "Tagged",
       count: counts.tagged,
-      icon: <BookmarkIcon className="w-4 h-4" />,
+      icon: <BookmarkIcon className="w-5 h-5" />,
     },
     {
       key: "untagged",
       label: "Untagged",
       count: counts.untagged,
-      icon: <BookmarkSlashIcon className="w-4 h-4" />,
+      icon: <BookmarkSlashIcon className="w-5 h-5" />,
     },
   ];
   return (
