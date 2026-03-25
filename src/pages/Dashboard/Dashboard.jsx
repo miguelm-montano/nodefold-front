@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Sidebar from "./components/Sidebar";
+import Sidebar from "./components/Sidebar/Sidebar";
 import { getFolders } from "../../services/folderService";
 import { getResources } from "../../services/resourceService";
 
