@@ -88,6 +88,7 @@ export default function FolderItem({
 
           {/* ••• en todos los niveles al hacer hover */}
           <span
+            data-folder-menu
             onClick={(e) => {
               e.stopPropagation();
               setFolderMenu(folderMenu === folder.id ? null : folder.id);
@@ -162,7 +163,10 @@ export default function FolderItem({
 
       {/* Mini menu carpeta padre */}
       {folderMenu === folder.id && (
-        <div className="absolute right-0 top-8 z-10 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg py-1 w-40">
+        <div
+          data-folder-menu
+          className="absolute right-0 top-8 z-10 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg py-1 w-40"
+        >
           <button
             onClick={() => {
               setEditingFolder(folder.id);

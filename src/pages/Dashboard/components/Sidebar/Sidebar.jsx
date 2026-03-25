@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../../context/AuthContext";
 import { logout as logoutService } from "../../../../services/authService";
@@ -52,6 +52,19 @@ export default function Sidebar({
     logout();
     navigate("/");
   };
+
+  useEffect(() => {
+    if (!folderMenu) return;
+
+    function handleClickOutside(e) {
+      if (!e.target.closest("[data-folder-menu]")) {
+        setFolderMenu(null);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [folderMenu]);
 
   const {
     handleCreateFolder,
