@@ -50,6 +50,14 @@ export default function AddResourceModal({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!form.title.trim()) {
+      setError("Title is required.");
+      return;
+    }
+    if (form.type === "image" && !image && !form.url) {
+      setError("Please provide an image file or a URL.");
+      return;
+    }
     setLoading(true);
     setError(null);
     try {
@@ -190,7 +198,6 @@ export default function AddResourceModal({
             name="title"
             value={form.title}
             onChange={handleChange}
-            required
             placeholder="Title"
             className="w-full px-3 py-2.5 text-sm rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400"
           />
