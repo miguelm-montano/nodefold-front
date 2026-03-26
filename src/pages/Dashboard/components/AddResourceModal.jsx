@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { XMarkIcon, PaperClipIcon } from "@heroicons/react/24/outline";
 import { createResource } from "../../../services/resourceService";
+import FoldersSvg from "../../../assets/Folders.svg";
 
 import TypeSelect from "./TypeSelect";
 import FolderSelect from "./FolderSelect";
@@ -86,11 +87,20 @@ export default function AddResourceModal({
       <div className="bg-white dark:bg-gray-900 rounded-2xl w-full max-w-lg border border-gray-200 dark:border-gray-700 shadow-xl">
         {/* Header */}
         <div className="flex items-center justify-between px-6 pt-6 pb-4">
-          <div>
-            <h2 className="text-lg font-bold text-gray-900 dark:text-white">
-              Upload your ideas
-            </h2>
-            <p className="text-sm text-gray-400">Select, describe and upload</p>
+          <div className="flex items-center gap-4">
+            <img
+              src={FoldersSvg}
+              alt="Folders"
+              className="w-20 h-20 dark:invert"
+            />
+            <div>
+              <h2 className="text-lg font-bold text-gray-900 dark:text-white">
+                Add Resource
+              </h2>
+              <p className="text-sm text-gray-400">
+                Select, describe and upload
+              </p>
+            </div>
           </div>
           <button
             onClick={onClose}

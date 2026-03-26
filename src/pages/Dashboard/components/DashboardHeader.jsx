@@ -59,14 +59,11 @@ export default function DashboardHeader({
         onClick={onAddResource}
         className="p-1.5 rounded-lg text-gray-800 font-extrabold hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
       >
-        <PlusIcon className="w-5 h-5" />
+        <PlusIcon className="w-5 h-5 dark:text-white" />
       </button>
 
       {/* Filters */}
-      <button
-        onClick={onAddResource}
-        className="p-1.5 rounded-lg text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-      >
+      <button className="p-1.5 rounded-lg text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
         <AdjustmentsVerticalIcon className="w-5 h-5" />
       </button>
 

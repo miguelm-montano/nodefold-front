@@ -4,6 +4,7 @@ import DashboardHeader from "./components/DashboardHeader";
 import { getFolders } from "../../services/folderService";
 import { getResources } from "../../services/resourceService";
 import AddResourceModal from "./components/AddResourceModal";
+import BoxSearch from "../../assets/BoxSearch.svg";
 
 export default function Dashboard() {
   const [folders, setFolders] = useState([]);
@@ -67,9 +68,14 @@ export default function Dashboard() {
           onSearch={setSearch}
           onAddResource={() => setShowAddResource(true)}
         />
-        <main className="flex-1 p-8">
-          <p className="text-gray-400">
-            Select a folder or filter to see resources
+        <main className="flex-1 p-8 flex flex-col items-center justify-center -mt-45 -ml-10">
+          <img
+            src={BoxSearch}
+            alt="Box search"
+            className="w-65 h-65 opacity-50 dark:invert"
+          />
+          <p className="text-gray-300 text-sm mt-3">
+            Start by creating a folder and uploading your files
           </p>
         </main>
       </div>
