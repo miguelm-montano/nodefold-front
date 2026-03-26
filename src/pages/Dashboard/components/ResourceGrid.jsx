@@ -3,6 +3,7 @@ import ImageCard from "./resources/ImageCard";
 import ColorPaletteCard from "./resources/ColorPaletteCard";
 import FontCard from "./resources/FontCard";
 import WebCard from "./resources/WebCard";
+import IconCard from "./resources/IconCard";
 
 const breakpointColumns = {
   default: 4,
@@ -17,6 +18,7 @@ const CARD_MAP = {
   color_palette: ColorPaletteCard,
   font: FontCard,
   web: WebCard,
+  icon: IconCard,
 };
 
 export default function ResourceGrid({ resources, onResourceClick }) {
