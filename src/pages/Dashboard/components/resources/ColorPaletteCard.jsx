@@ -7,7 +7,7 @@ export default function ColorPaletteCard({ resource, onClick }) {
       className="cursor-pointer rounded-2xl mb-4 overflow-hidden border border-gray-100 dark:border-gray-800 group transition-transform duration-300 hover:scale-[1.02]"
     >
       {/* Colores */}
-      <div className="flex h-62">
+      <div className="flex h-60">
         {colors.map((hex, i) => (
           <div
             key={i}

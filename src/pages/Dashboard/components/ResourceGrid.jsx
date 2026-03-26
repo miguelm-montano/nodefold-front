@@ -1,6 +1,7 @@
 import Masonry from "react-masonry-css";
 import ImageCard from "./resources/ImageCard";
 import ColorPaletteCard from "./resources/ColorPaletteCard";
+import FontCard from "./resources/FontCard";
 
 const breakpointColumns = {
   default: 4,
@@ -13,6 +14,7 @@ const breakpointColumns = {
 const CARD_MAP = {
   image: ImageCard,
   color_palette: ColorPaletteCard,
+  font: FontCard,
 };
 
 export default function ResourceGrid({ resources, onResourceClick }) {
