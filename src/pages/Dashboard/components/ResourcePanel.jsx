@@ -32,11 +32,7 @@ function ResourcePreview({ resource }) {
   if (resource.type === "image") {
     return (
       <img
-        src={
-          resource.image_path
-            ? `http://localhost:8000/storage/${resource.image_path}`
-            : resource.url
-        }
+        src={resource.image_url ?? resource.url}
         alt={resource.title}
         className="w-full rounded-xl object-cover max-h-60"
       />

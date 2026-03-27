@@ -4,28 +4,24 @@ import DashboardHeader from "./components/DashboardHeader";
 import ResourceGrid from "./components/ResourceGrid";
 import AddResourceModal from "./components/AddResourceModal";
 import { getFolders } from "../../services/folderService";
-import { getResources } from "../../services/resourceService";
 import BoxSearch from "../../assets/BoxSearch.svg";
 import ResourcePanel from "./components/ResourcePanel";
+import { useResources } from "./useResources";
 
 export default function Dashboard() {
   const [folders, setFolders] = useState([]);
   const [activeFilter, setActiveFilter] = useState("all");
   const [activeFolderId, setActiveFolderId] = useState(null);
-  const [counts, setCounts] = useState({ all: 0, tagged: 0, untagged: 0 });
   const [search, setSearch] = useState("");
   const [showAddResource, setShowAddResource] = useState(false);
-  const [resources, setResources] = useState([]);
   const [selectedResource, setSelectedResource] = useState(null);
 
-  useEffect(() => {
-    fetchFolders();
-    fetchCounts();
-  }, []);
-
-  useEffect(() => {
-    fetchResources();
-  }, [activeFilter, activeFolderId, search, folders]);
+  const { resources, counts, fetchResources, fetchCounts } = useResources({
+    activeFilter,
+    activeFolderId,
+    search,
+    folders,
+  });
 
   const fetchFolders = async () => {
     try {
@@ -36,39 +32,10 @@ export default function Dashboard() {
     }
   };
 
-  const fetchCounts = async () => {
-    const [all, tagged, untagged] = await Promise.all([
-      getResources(),
-      getResources({ tagged: "true" }),
-      getResources({ tagged: "false" }),
-    ]);
-    setCounts({
-      all: all.data.length,
-      tagged: tagged.data.length,
-      untagged: untagged.data.length,
-    });
-  };
-
-  const fetchResources = async () => {
-    try {
-      const params = {};
-      if (search) params.search = search;
-      if (activeFilter === "tagged") params.tagged = "true";
-      if (activeFilter === "untagged") params.tagged = "false";
-      const res = await getResources(params);
-      // si hay carpeta activa filtra en frontend
-      if (activeFolderId) {
-        const folder = folders.find((f) => f.id === activeFolderId);
-        const subIds = folder?.folders?.map((s) => s.id) || [];
-        const allIds = [activeFolderId, ...subIds];
-        setResources(res.data.filter((r) => allIds.includes(r.folder?.id)));
-      } else {
-        setResources(res.data);
-      }
-    } catch (err) {
-      console.error("Failed to fetch resources", err);
-    }
-  };
+  useEffect(() => {
+    fetchFolders();
+    fetchCounts();
+  }, []);
 
   const handleFilterChange = (filter) => {
     setActiveFilter(filter);
