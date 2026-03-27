@@ -28,8 +28,12 @@ export default function Dashboard() {
   }, [activeFilter, activeFolderId, search, folders]);
 
   const fetchFolders = async () => {
-    const res = await getFolders();
-    setFolders(res.data);
+    try {
+      const res = await getFolders();
+      setFolders(res.data);
+    } catch (err) {
+      console.error("Failed to fetch folders", err);
+    }
   };
 
   const fetchCounts = async () => {
@@ -46,19 +50,23 @@ export default function Dashboard() {
   };
 
   const fetchResources = async () => {
-    const params = {};
-    if (search) params.search = search;
-    if (activeFilter === "tagged") params.tagged = "true";
-    if (activeFilter === "untagged") params.tagged = "false";
-    const res = await getResources(params);
-    // si hay carpeta activa filtra en frontend
-    if (activeFolderId) {
-      const folder = folders.find((f) => f.id === activeFolderId);
-      const subIds = folder?.folders?.map((s) => s.id) || [];
-      const allIds = [activeFolderId, ...subIds];
-      setResources(res.data.filter((r) => allIds.includes(r.folder?.id)));
-    } else {
-      setResources(res.data);
+    try {
+      const params = {};
+      if (search) params.search = search;
+      if (activeFilter === "tagged") params.tagged = "true";
+      if (activeFilter === "untagged") params.tagged = "false";
+      const res = await getResources(params);
+      // si hay carpeta activa filtra en frontend
+      if (activeFolderId) {
+        const folder = folders.find((f) => f.id === activeFolderId);
+        const subIds = folder?.folders?.map((s) => s.id) || [];
+        const allIds = [activeFolderId, ...subIds];
+        setResources(res.data.filter((r) => allIds.includes(r.folder?.id)));
+      } else {
+        setResources(res.data);
+      }
+    } catch (err) {
+      console.error("Failed to fetch resources", err);
     }
   };
 
@@ -130,8 +138,10 @@ export default function Dashboard() {
             fetchResources();
             fetchCounts();
           }}
-          onEdit={(resource) => {
-            // siguiente paso
+          onEdit={(updatedResource) => {
+            setSelectedResource(updatedResource);
+            fetchResources();
+            fetchCounts();
           }}
         />
       )}
