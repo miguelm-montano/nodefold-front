@@ -6,6 +6,7 @@ import AddResourceModal from "./components/AddResourceModal";
 import { getFolders } from "../../services/folderService";
 import { getResources } from "../../services/resourceService";
 import BoxSearch from "../../assets/BoxSearch.svg";
+import ResourcePanel from "./components/ResourcePanel";
 
 export default function Dashboard() {
   const [folders, setFolders] = useState([]);
@@ -69,6 +70,7 @@ export default function Dashboard() {
   const handleFolderSelect = (id) => {
     setActiveFolderId(id);
     setActiveFilter(null);
+    setSelectedResource(null);
   };
 
   const activeFolder = folders.find((f) => f.id === activeFolderId) || null;
@@ -85,7 +87,12 @@ export default function Dashboard() {
         activeFolderId={activeFolderId}
         counts={counts}
       />
-      <div className="ml-64 flex-1 flex flex-col">
+
+      <div
+        className={`flex-1 flex flex-col transition-all duration-300 ${
+          selectedResource ? "ml-64 mr-80" : "ml-64"
+        }`}
+      >
         <DashboardHeader
           activeFolder={activeFolder}
           folders={folders}
@@ -113,6 +120,21 @@ export default function Dashboard() {
           )}
         </main>
       </div>
+
+      {selectedResource && (
+        <ResourcePanel
+          resource={selectedResource}
+          onClose={() => setSelectedResource(null)}
+          onDelete={() => {
+            setSelectedResource(null);
+            fetchResources();
+            fetchCounts();
+          }}
+          onEdit={(resource) => {
+            // siguiente paso
+          }}
+        />
+      )}
 
       {showAddResource && (
         <AddResourceModal
