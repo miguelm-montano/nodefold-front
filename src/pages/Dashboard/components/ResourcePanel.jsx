@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import {
   PhotoIcon,
   LanguageIcon,
@@ -10,8 +9,9 @@ import {
   TrashIcon,
   PencilIcon,
 } from "@heroicons/react/24/outline";
-import { deleteResource, updateResource } from "../../../services/resourceService";
+import { deleteResource } from "../../../services/resourceService";
 import ResourcePreview from "./resources/ResourcePreview";
+import { useResourceEdit } from "../hooks/useResourceEdit";
 
 const TYPE_ICONS = {
   image: <PhotoIcon className="w-3.5 h-3.5" />,
@@ -33,15 +33,8 @@ const inputClass =
   "w-full px-3 py-2 text-sm rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400";
 
 export default function ResourcePanel({ resource, onClose, onDelete, onEdit }) {
-  const [isEditing, setIsEditing] = useState(false);
-  const [editForm, setEditForm] = useState({});
-  const [saving, setSaving] = useState(false);
-  const [saveError, setSaveError] = useState(null);
-
-  useEffect(() => {
-    setIsEditing(false);
-    setSaveError(null);
-  }, [resource?.id]);
+  const { isEditing, editForm, setEditForm, saving, saveError, startEdit, handleCancel, handleSave } =
+    useResourceEdit(resource, onEdit);
 
   if (!resource) return null;
 
@@ -49,46 +42,6 @@ export default function ResourcePanel({ resource, onClose, onDelete, onEdit }) {
     if (!confirm("Delete this resource?")) return;
     await deleteResource(resource.id);
     onDelete();
-  };
-
-  const startEdit = () => {
-    setEditForm({
-      title: resource.title,
-      description: resource.description || "",
-      tags: resource.tags?.map((t) => t.name).join(", ") || "",
-      url: resource.url || "",
-    });
-    setIsEditing(true);
-    setSaveError(null);
-  };
-
-  const handleCancel = () => {
-    setIsEditing(false);
-    setSaveError(null);
-  };
-
-  const handleSave = async () => {
-    if (!editForm.title.trim()) {
-      setSaveError("Title is required.");
-      return;
-    }
-    setSaving(true);
-    setSaveError(null);
-    try {
-      const res = await updateResource(resource.id, {
-        title: editForm.title,
-        type: resource.type,
-        description: editForm.description || null,
-        tags: editForm.tags || null,
-        url: editForm.url || null,
-      });
-      setIsEditing(false);
-      onEdit(res.data);
-    } catch (err) {
-      setSaveError(err.response?.data?.message || "Something went wrong");
-    } finally {
-      setSaving(false);
-    }
   };
 
   return (

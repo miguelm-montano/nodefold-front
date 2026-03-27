@@ -6,7 +6,7 @@ import AddResourceModal from "./components/AddResourceModal";
 import { getFolders } from "../../services/folderService";
 import BoxSearch from "../../assets/BoxSearch.svg";
 import ResourcePanel from "./components/ResourcePanel";
-import { useResources } from "./useResources";
+import { useResources } from "./hooks/useResources";
 
 export default function Dashboard() {
   const [folders, setFolders] = useState([]);

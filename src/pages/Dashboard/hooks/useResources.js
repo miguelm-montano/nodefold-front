@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getResources } from "../../services/resourceService";
+import { getResources } from "../../../services/resourceService";
 
 export function useResources({ activeFilter, activeFolderId, search, folders }) {
   const [resources, setResources] = useState([]);
