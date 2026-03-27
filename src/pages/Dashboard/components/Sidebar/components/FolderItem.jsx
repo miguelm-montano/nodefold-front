@@ -2,6 +2,9 @@ import {
   FolderIcon,
   FolderOpenIcon,
   RectangleGroupIcon,
+  PencilIcon,
+  FolderPlusIcon,
+  TrashIcon,
 } from "@heroicons/react/24/outline";
 
 export default function FolderItem({
@@ -173,8 +176,9 @@ export default function FolderItem({
               setEditName(folder.name);
               setFolderMenu(null);
             }}
-            className="w-full text-left px-4 py-2 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+            className="w-full text-left px-4 py-2 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors flex items-center gap-2"
           >
+            <PencilIcon className="w-3.5 h-3.5" />
             Edit name
           </button>
           {isRoot && (
@@ -183,16 +187,18 @@ export default function FolderItem({
                 setCreatingSubfolder(folder.id);
                 setFolderMenu(null);
               }}
-              className="w-full text-left px-4 py-2 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+              className="w-full text-left px-4 py-2 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors flex items-center gap-2"
             >
-              Create subfolder
+              <FolderPlusIcon className="w-3.5 h-3.5" />
+              Add subfolder
             </button>
           )}
           <div className="border-t border-gray-100 dark:border-gray-700 my-1" />
           <button
             onClick={() => handleDeleteFolder(folder.id)}
-            className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+            className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors flex items-center gap-2"
           >
+            <TrashIcon className="w-3.5 h-3.5" />
             Delete
           </button>
         </div>

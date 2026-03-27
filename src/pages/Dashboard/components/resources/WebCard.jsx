@@ -5,29 +5,29 @@ export default function WebCard({ resource, onClick }) {
   return (
     <div
       onClick={() => onClick(resource)}
-      className="cursor-pointer rounded-2xl mb-4 overflow-hidden border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 p-5 group transition-transform duration-300 hover:scale-[1.02]"
+      className="cursor-pointer rounded-2xl mb-3 overflow-hidden border border-gray-300 dark:border-gray-800 bg-white dark:bg-gray-900 p-5 group transition-transform duration-300 hover:scale-[1.02] flex items-center justify-center"
     >
-      {/* Favicon */}
-      <div className="w-10 h-10 rounded-xl overflow-hidden mb-4 bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+      {/* Icono */}
+      <div className="w-12 h-12 rounded-xl overflow-hidden flex items-center justify-center shrink-0">
         <img
           src={favicon}
           alt={resource.title}
-          className="w-6 h-6"
+          className="w-8 h-8"
           onError={(e) => {
             e.target.style.display = "none";
           }}
         />
       </div>
 
-      {/* Título */}
-      <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1 truncate">
-        {resource.title}
-      </p>
-
-      {/* Dominio */}
-      <p className="text-xs text-gray-400 dark:text-gray-500 truncate">
-        {domain}
-      </p>
+      {/* Textos */}
+      <div className="flex flex-col justify-center text-left">
+        <p className="text-sm font-semibold text-gray-900 dark:text-white truncate">
+          {resource.title}
+        </p>
+        <p className="text-xs text-gray-400 dark:text-gray-500 truncate">
+          {domain}
+        </p>
+      </div>
     </div>
   );
 }

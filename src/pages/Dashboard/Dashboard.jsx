@@ -77,13 +77,13 @@ export default function Dashboard() {
         />
         <main className="flex-1 p-8">
           {isEmpty ? (
-            <div className="flex flex-col items-center justify-center h-full -mt-10">
+            <div className="flex flex-col items-center justify-center h-full -mt-14">
               <img
                 src={BoxSearch}
                 alt="Empty"
-                className="w-65 h-65 opacity-50 dark:invert"
+                className="w-65 h-65 dark:invert"
               />
-              <p className="text-gray-300 text-sm mt-3">
+              <p className="text-gray-400 text-sm mt-3">
                 Start by creating a folder and uploading your files
               </p>
             </div>

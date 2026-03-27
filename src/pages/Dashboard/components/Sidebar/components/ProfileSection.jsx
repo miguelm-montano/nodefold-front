@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { UserCircleIcon } from "@heroicons/react/24/outline";
+import { UserCircleIcon } from "@heroicons/react/24/solid";
 import { ArrowLeftEndOnRectangleIcon } from "@heroicons/react/24/outline";
 
 export default function ProfileSection({ user, onLogout }) {
@@ -9,7 +9,7 @@ export default function ProfileSection({ user, onLogout }) {
         to="/profile"
         className="w-full text-left px-3 py-2 rounded-lg text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors flex items-center gap-2"
       >
-        <UserCircleIcon className="w-5 h-5" /> {user?.name}
+        <UserCircleIcon className="w-5 h-5 text-black" /> {user?.name}
       </Link>
 
       <button

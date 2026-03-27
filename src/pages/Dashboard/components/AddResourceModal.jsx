@@ -50,12 +50,12 @@ export default function AddResourceModal({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.title.trim()) {
-      setError("Title is required.");
+    if (form.type === "image" && !image && !form.url) {
+      setError("Please provide an image file or a URL");
       return;
     }
-    if (form.type === "image" && !image && !form.url) {
-      setError("Please provide an image file or a URL.");
+    if (!form.title.trim()) {
+      setError("Title is required");
       return;
     }
     setLoading(true);

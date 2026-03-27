@@ -68,7 +68,7 @@ export default function DashboardHeader({
       </button>
 
       {/* Search */}
-      <div className="flex items-center gap-2 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-1.5 bg-white dark:bg-gray-900 w-56">
+      <div className="flex items-center gap-2 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-1.5 bg-white dark:bg-gray-900 w-56 mr-2">
         <MagnifyingGlassIcon className="w-4 h-4 text-gray-400 flex-shrink-0" />
         <input
           type="text"
