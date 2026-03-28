@@ -50,6 +50,14 @@ export default function AddResourceModal({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!form.type) {
+      setError("Select a resource type");
+      return;
+    }
+    if (!form.folder_id) {
+      setError("Select a folder");
+      return;
+    }
     if (form.type === "image" && !image && !form.url) {
       setError("Please provide an image file or a URL");
       return;

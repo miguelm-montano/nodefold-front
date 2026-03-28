@@ -5,7 +5,7 @@ export default function WebCard({ resource, onClick }) {
   return (
     <div
       onClick={() => onClick(resource)}
-      className="cursor-pointer rounded-2xl mb-3 overflow-hidden border border-gray-300 dark:border-gray-800 bg-white dark:bg-gray-900 p-5 group transition-transform duration-300 hover:scale-[1.02] flex items-center justify-center"
+      className="cursor-pointer rounded-2xl mb-3 overflow-hidden border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 p-5 group transition-transform duration-300 hover:scale-[1.02] flex items-center justify-center"
     >
       {/* Icono */}
       <div className="w-12 h-12 rounded-xl overflow-hidden flex items-center justify-center shrink-0">

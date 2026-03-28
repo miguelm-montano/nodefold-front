@@ -39,9 +39,9 @@ export default function ResourcePreview({ resource }) {
         </p>
         <p
           style={{ fontFamily: `'${fontName}', serif` }}
-          className="text-sm font-light text-gray-400 dark:text-gray-500"
+          className="text-xl font-light text-gray-400 dark:text-gray-500"
         >
-          This is how this typography looks
+          A B C D E F<br />G H I J K L M<br />N O P Q R S T<br />U V W X Y Z
         </p>
       </div>
     );
