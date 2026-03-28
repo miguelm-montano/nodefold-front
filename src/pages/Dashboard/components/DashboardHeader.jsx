@@ -5,6 +5,7 @@ import {
   ChevronRightIcon,
   AdjustmentsVerticalIcon,
 } from "@heroicons/react/24/outline";
+import FilterMenu from "./resources/FilterMenu";
 
 export default function DashboardHeader({
   activeFolder,
@@ -63,9 +64,7 @@ export default function DashboardHeader({
       </button>
 
       {/* Filters */}
-      <button className="p-1.5 rounded-lg text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-        <AdjustmentsVerticalIcon className="w-5 h-5" />
-      </button>
+      <FilterMenu />
 
       {/* Search */}
       <div className="flex items-center gap-2 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-1.5 bg-white dark:bg-gray-900 w-56 mr-2">
