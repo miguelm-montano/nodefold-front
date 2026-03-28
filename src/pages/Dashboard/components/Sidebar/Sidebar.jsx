@@ -23,6 +23,7 @@ import CreateFolderInput from "./components/CreateFolderInput";
 import FolderList from "./components/FolderList";
 import FolderItem from "./components/FolderItem";
 import { useFolders } from "./hooks/useFolders";
+import ConfirmDeleteModal from "../ConfirmDeleteModal";
 
 export default function Sidebar({
   folders,
@@ -68,10 +69,15 @@ export default function Sidebar({
 
   const {
     handleCreateFolder,
-    handleDeleteFolder,
+    requestDelete,
+    confirmDelete,
+    cancelDelete,
+    pendingDeleteId,
     handleUpdateFolder,
     handleCreateSubfolder,
   } = useFolders(onFoldersChange);
+
+  const pendingFolder = folders.flatMap((f) => [f, ...(f.folders || [])]).find((f) => f.id === pendingDeleteId);
 
   const filters = [
     {
@@ -135,7 +141,7 @@ export default function Sidebar({
             activeFolderId={activeFolderId}
             onFolderSelect={onFolderSelect}
             handleUpdateFolder={handleUpdateFolder}
-            handleDeleteFolder={handleDeleteFolder}
+            handleDeleteFolder={requestDelete}
             handleCreateSubfolder={handleCreateSubfolder}
           />
         )}
@@ -143,6 +149,15 @@ export default function Sidebar({
 
       {/* Profile + Logout */}
       <ProfileSection user={user} onLogout={handleLogout} />
+
+      {pendingDeleteId && (
+        <ConfirmDeleteModal
+          type="folder"
+          name={pendingFolder?.name}
+          onConfirm={confirmDelete}
+          onClose={cancelDelete}
+        />
+      )}
     </aside>
   );
 }

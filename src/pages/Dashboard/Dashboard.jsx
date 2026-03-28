@@ -104,6 +104,7 @@ export default function Dashboard() {
             setSelectedResource(null);
             fetchResources();
             fetchCounts();
+            fetchFolders();
           }}
           onEdit={(updatedResource) => {
             setSelectedResource(updatedResource);
@@ -121,6 +122,7 @@ export default function Dashboard() {
           onSuccess={() => {
             fetchResources();
             fetchCounts();
+            fetchFolders();
           }}
         />
       )}

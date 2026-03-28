@@ -8,6 +8,7 @@ import { useState } from "react";
 
 export function useFolders(onFoldersChange) {
   const [creating, setCreating] = useState(false);
+  const [pendingDeleteId, setPendingDeleteId] = useState(null);
 
   const handleCreateFolder = async (e, name, setName, setShowInput) => {
     e.preventDefault();
@@ -24,9 +25,13 @@ export function useFolders(onFoldersChange) {
     }
   };
 
-  const handleDeleteFolder = async (id) => {
-    if (!confirm("Delete this folder and all its contents?")) return;
-    await deleteFolder(id);
+  const requestDelete = (id) => setPendingDeleteId(id);
+  const cancelDelete = () => setPendingDeleteId(null);
+
+  const confirmDelete = async () => {
+    if (!pendingDeleteId) return;
+    await deleteFolder(pendingDeleteId);
+    setPendingDeleteId(null);
     onFoldersChange();
   };
 
@@ -49,7 +54,10 @@ export function useFolders(onFoldersChange) {
 
   return {
     handleCreateFolder,
-    handleDeleteFolder,
+    requestDelete,
+    confirmDelete,
+    cancelDelete,
+    pendingDeleteId,
     handleUpdateFolder,
     handleCreateSubfolder,
     creating,
