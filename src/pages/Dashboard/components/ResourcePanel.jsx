@@ -12,6 +12,8 @@ import {
 import { deleteResource } from "../../../services/resourceService";
 import ResourcePreview from "./resources/ResourcePreview";
 import { useResourceEdit } from "../hooks/useResourceEdit";
+import ConfirmDeleteModal from "./ConfirmDeleteModal";
+import { useState } from "react";
 
 const TYPE_ICONS = {
   image: <PhotoIcon className="w-3.5 h-3.5" />,
@@ -36,15 +38,17 @@ export default function ResourcePanel({ resource, onClose, onDelete, onEdit }) {
   const { isEditing, editForm, setEditForm, saving, saveError, startEdit, handleCancel, handleSave } =
     useResourceEdit(resource, onEdit);
 
+  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+
   if (!resource) return null;
 
   const handleDelete = async () => {
-    if (!confirm("Delete this resource?")) return;
     await deleteResource(resource.id);
     onDelete();
   };
 
   return (
+    <>
     <aside className="w-80 h-screen flex flex-col border-l border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 fixed right-0 top-0 overflow-y-auto">
       {/* Header */}
       <div className="flex items-center justify-end px-5 pt-5 pb-2">
@@ -211,7 +215,7 @@ export default function ResourcePanel({ resource, onClose, onDelete, onEdit }) {
               Edit
             </button>
             <button
-              onClick={handleDelete}
+              onClick={() => setShowConfirmDelete(true)}
               className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-4xl border border-red-200 dark:border-red-800 text-sm font-medium text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
             >
               <TrashIcon className="w-4 h-4" />
@@ -221,5 +225,15 @@ export default function ResourcePanel({ resource, onClose, onDelete, onEdit }) {
         )}
       </div>
     </aside>
+
+    {showConfirmDelete && (
+      <ConfirmDeleteModal
+        type="resource"
+        name={resource.title}
+        onConfirm={handleDelete}
+        onClose={() => setShowConfirmDelete(false)}
+      />
+    )}
+  </>
   );
 }
