@@ -57,7 +57,11 @@ export default function Dashboard() {
         folders={folders}
         activeFilter={activeFilter}
         onFilterChange={handleFilterChange}
-        onFoldersChange={fetchFolders}
+        onFoldersChange={() => {
+          fetchFolders();
+          fetchResources();
+          fetchCounts();
+        }}
         onFolderSelect={handleFolderSelect}
         activeFolderId={activeFolderId}
         counts={counts}

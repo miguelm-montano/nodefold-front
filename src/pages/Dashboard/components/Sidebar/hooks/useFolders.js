@@ -30,9 +30,14 @@ export function useFolders(onFoldersChange) {
 
   const confirmDelete = async () => {
     if (!pendingDeleteId) return;
-    await deleteFolder(pendingDeleteId);
-    setPendingDeleteId(null);
-    onFoldersChange();
+    try {
+      await deleteFolder(pendingDeleteId);
+      setPendingDeleteId(null);
+      onFoldersChange();
+    } catch (err) {
+      console.error("Failed to delete folder", err);
+      setPendingDeleteId(null);
+    }
   };
 
   const handleUpdateFolder = async (id, name, resetEdit) => {
@@ -47,9 +52,13 @@ export function useFolders(onFoldersChange) {
     e.preventDefault();
     if (!name.trim()) return;
 
-    await createFolder({ name, parent_id: parentId });
-    resetSubfolder();
-    onFoldersChange();
+    try {
+      await createFolder({ name, parent_id: parentId });
+      resetSubfolder();
+      onFoldersChange();
+    } catch (err) {
+      console.error("Failed to create subfolder", err);
+    }
   };
 
   return {

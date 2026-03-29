@@ -8,9 +8,7 @@ export default function ConfirmDeleteModal({ type, name, onConfirm, onClose }) {
     ? "This folder and all resources will be permanently removed"
     : "The resource will be permanently removed";
 
-  const question = isFolder
-    ? `Are you sure you want to delete:`
-    : `Are you sure you want to delete:`;
+  const question = "Are you sure you want to delete:";
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4">

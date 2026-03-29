@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { getResources } from "../../../services/resourceService";
 
 export function useResources({ activeFilter, activeFolderId, search, folders }) {
   const [resources, setResources] = useState([]);
   const [counts, setCounts] = useState({ all: 0, tagged: 0, untagged: 0 });
+  const foldersRef = useRef(folders);
+  foldersRef.current = folders;
 
   const fetchResources = async () => {
     try {
@@ -13,7 +15,7 @@ export function useResources({ activeFilter, activeFolderId, search, folders }) 
       if (activeFilter === "untagged") params.tagged = "false";
       const res = await getResources(params);
       if (activeFolderId) {
-        const folder = folders.find((f) => f.id === activeFolderId);
+        const folder = foldersRef.current.find((f) => f.id === activeFolderId);
         const subIds = folder?.folders?.map((s) => s.id) || [];
         const allIds = [activeFolderId, ...subIds];
         setResources(res.data.filter((r) => allIds.includes(r.folder?.id)));
@@ -44,7 +46,7 @@ export function useResources({ activeFilter, activeFolderId, search, folders }) 
 
   useEffect(() => {
     fetchResources();
-  }, [activeFilter, activeFolderId, search, folders]);
+  }, [activeFilter, activeFolderId, search]);
 
   return { resources, counts, fetchResources, fetchCounts };
 }
