@@ -6,6 +6,7 @@ import AddResourceModal from "./components/AddResourceModal";
 import { getFolders } from "../../services/folderService";
 import BoxSearch from "../../assets/BoxSearch.svg";
 import ResourcePanel from "./components/ResourcePanel";
+import Profile from "../Profile/Profile";
 import { useResources } from "./hooks/useResources";
 
 export default function Dashboard() {
@@ -14,6 +15,7 @@ export default function Dashboard() {
   const [activeFolderId, setActiveFolderId] = useState(null);
   const [search, setSearch] = useState("");
   const [showAddResource, setShowAddResource] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
   const [selectedResource, setSelectedResource] = useState(null);
 
   const { resources, counts, fetchResources, fetchCounts } = useResources({
@@ -62,6 +64,7 @@ export default function Dashboard() {
           fetchResources();
           fetchCounts();
         }}
+        onShowProfile={() => setShowProfile(true)}
         onFolderSelect={handleFolderSelect}
         activeFolderId={activeFolderId}
         counts={counts}
@@ -130,6 +133,8 @@ export default function Dashboard() {
           }}
         />
       )}
+
+      {showProfile && <Profile onClose={() => setShowProfile(false)} />}
     </div>
   );
 }

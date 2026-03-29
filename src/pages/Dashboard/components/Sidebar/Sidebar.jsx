@@ -31,6 +31,7 @@ export default function Sidebar({
   onFilterChange,
   onFoldersChange,
   onFolderSelect,
+  onShowProfile,
   activeFolderId,
   counts,
 }) {
@@ -77,7 +78,9 @@ export default function Sidebar({
     handleCreateSubfolder,
   } = useFolders(onFoldersChange);
 
-  const pendingFolder = folders.flatMap((f) => [f, ...(f.folders || [])]).find((f) => f.id === pendingDeleteId);
+  const pendingFolder = folders
+    .flatMap((f) => [f, ...(f.folders || [])])
+    .find((f) => f.id === pendingDeleteId);
 
   const filters = [
     {
@@ -148,7 +151,11 @@ export default function Sidebar({
       </FolderList>
 
       {/* Profile + Logout */}
-      <ProfileSection user={user} onLogout={handleLogout} />
+      <ProfileSection
+        user={user}
+        onLogout={handleLogout}
+        onShowProfile={onShowProfile}
+      />
 
       {pendingDeleteId && (
         <ConfirmDeleteModal
