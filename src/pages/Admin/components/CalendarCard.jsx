@@ -6,18 +6,25 @@ export default function CalendarCard() {
   const [selected, setSelected] = useState(new Date());
 
   return (
-    <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-3 overflow-hidden w-full flex items-center justify-center">
+    <div className="bg-stone-50 dark:bg-gray-900 rounded-2xl p-3 overflow-hidden w-full flex items-center justify-center transform transition-transform duration-300 hover:scale-105">
       <style>{`
         .rdp-root { margin: 0; }
         .rdp-month_caption { font-size: 0.72rem; padding-bottom: 4px; }
         .rdp-weekdays, .rdp-week { display: flex; gap: 0; }
-        .rdp-weekday { width: 26px; height: 20px; font-size: 0.6rem; text-align: center; }
-        .rdp-day { width: 26px; height: 26px; padding: 0; }
-        .rdp-day_button { width: 26px; height: 26px; font-size: 0.68rem; padding: 0; border-radius: 50%; }
-        .rdp-month_grid { border-spacing: 0; border-collapse: collapse; }
+        .rdp-weekday { width: 30px; height: 22px; font-size: 0.7rem; }
+        .rdp-day { width: 30px; height: 30px; }
+        .rdp-day_button { width: 30px; height: 30px; font-size: 0.75rem; }
+        .rdp-nav button { width: 24px; height: 24px; }
         .rdp-nav button { width: 20px; height: 20px; }
+        .rdp { --rdp-accent-color: black; }
+        .dark .rdp { --rdp-accent-color: white; }  
       `}</style>
-      <DayPicker mode="single" selected={selected} onSelect={setSelected} />
+      <DayPicker
+        mode="single"
+        selected={selected}
+        onSelect={setSelected}
+        className="rdp"
+      />
     </div>
   );
 }
