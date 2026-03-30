@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { ArrowRightStartOnRectangleIcon } from "@heroicons/react/24/outline";
+import { ArrowLeftEndOnRectangleIcon } from "@heroicons/react/24/outline";
 import { useAuth } from "../../../context/AuthContext";
 import { logout as logoutService } from "../../../services/authService";
 
@@ -22,9 +22,9 @@ export default function AdminHeader() {
       </span>
       <button
         onClick={handleLogout}
-        className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+        className="flex items-center gap-1 text-sm font-semibold text-gray-400 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
       >
-        <ArrowRightStartOnRectangleIcon className="w-5 h-5" />
+        <ArrowLeftEndOnRectangleIcon className="w-5 h-5" />
         Logout
       </button>
     </header>
