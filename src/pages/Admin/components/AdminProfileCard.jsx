@@ -31,7 +31,6 @@ export default function AdminProfileCard({ user, onProfileClick }) {
         {user?.name}
       </p>
       <p className="text-xs text-gray-400 mb-4">Admin</p>
-      <div className="flex-1" />
       <button
         onClick={onProfileClick}
         className="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"

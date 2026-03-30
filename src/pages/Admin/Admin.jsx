@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useAdmin from "./hooks/useAdmin";
 import Profile from "../Profile/Profile";
 import AdminHeader from "./components/AdminHeader";
@@ -19,6 +20,7 @@ export default function Admin() {
   const { stats, users, admins, loading, user, handleDeleteUser } = useAdmin();
   const [selectedUser, setSelectedUser] = useState(null);
   const [showProfile, setShowProfile] = useState(false);
+  const navigate = useNavigate();
 
   const resourcesPerUser =
     stats && stats.total_users
@@ -42,7 +44,7 @@ export default function Admin() {
     <div className="min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-white">
       <AdminHeader />
 
-      <div className="max-w-screen-2xl mx-auto px-8 py-2 space-y-8">
+      <div className="max-w-screen-2xl mx-auto px-8 py-1 space-y-8">
         {/* Welcome */}
         <h1 className="text-3xl font-bold">Welcome back, {user?.name}!</h1>
 
@@ -141,10 +143,18 @@ export default function Admin() {
             <CalendarCard />
 
             {/* Fila 3 derecha */}
-            <AdminProfileCard
-              user={user}
-              onProfileClick={() => setShowProfile(true)}
-            />
+            <div className="flex flex-col gap-4">
+              <AdminProfileCard
+                user={user}
+                onProfileClick={() => setShowProfile(true)}
+              />
+              <button
+                onClick={() => navigate("/dashboard")}
+                className="w-full py-4 rounded-2xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-semibold text-sm hover:opacity-90 transition-opacity"
+              >
+                Go to Dashboard
+              </button>
+            </div>
           </div>
         </div>
       </div>
