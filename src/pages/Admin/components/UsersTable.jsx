@@ -6,7 +6,7 @@ export default function UsersTable({ users, onDelete, onUserClick }) {
   const [deleteModal, setDeleteModal] = useState(null);
 
   return (
-    <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6">
+    <div className="min-h-84 max-h-84 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6">
       <h3 className="font-semibold text-gray-900 dark:text-white mb-4">
         All users
       </h3>
