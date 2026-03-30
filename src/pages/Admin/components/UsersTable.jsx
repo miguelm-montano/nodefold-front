@@ -14,33 +14,58 @@ export default function UsersTable({ users, onDelete, onUserClick }) {
         <table className="w-full text-sm">
           <thead>
             <tr className="text-left text-gray-400 border-b border-gray-100 dark:border-gray-800">
-              <th className="pb-3 font-medium">Name</th>
-              <th className="pb-3 font-medium">Date</th>
-              <th className="pb-3 font-medium">Email</th>
-              <th className="pb-3 font-medium"></th>
+              <th className="pb-2 pl-2 font-medium">Name User</th>
+              <th className="pb-2 pl-2 font-medium">Date Register</th>
+              <th className="pb-2 pl-2 font-medium">Folders</th>
+              <th className="pb-2 pl-2 font-medium">Resources</th>
+              <th className="pb-2 font-medium"></th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-50 dark:divide-gray-800">
+          <tbody>
             {users.map((user) => (
               <tr
                 key={user.id}
                 onClick={() => onUserClick(user)}
-                className="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                className="cursor-pointer group"
               >
-                <td className="py-3 text-gray-900 dark:text-white font-medium">
+                <td
+                  className="py-2 px-2 font-medium text-gray-900 dark:text-white 
+                     group-hover:bg-gray-50 dark:group-hover:bg-gray-800 
+                     first:rounded-l-lg"
+                >
                   {user.name}
                 </td>
-                <td className="py-3 text-gray-500 dark:text-gray-400">
+
+                <td
+                  className="py-2 px-2 text-gray-500 dark:text-gray-400 
+                     group-hover:bg-gray-50 dark:group-hover:bg-gray-800"
+                >
                   {new Date(user.created_at).toLocaleDateString("en-GB", {
                     day: "numeric",
                     month: "short",
                     year: "numeric",
                   })}
                 </td>
-                <td className="py-3 text-gray-500 dark:text-gray-400">
-                  {user.email}
+
+                <td
+                  className="py-2 px-2 text-gray-500 dark:text-gray-400 
+                     group-hover:bg-gray-50 dark:group-hover:bg-gray-800"
+                >
+                  {user.folders_count ?? "—"}
                 </td>
-                <td className="py-3">
+
+                <td
+                  className="py-2 px-2 text-gray-500 dark:text-gray-400 
+                     group-hover:bg-gray-50 dark:group-hover:bg-gray-800"
+                >
+                  {user.resources_count ?? "—"}
+                </td>
+
+                <td
+                  className="py-2 
+                     group-hover:bg-gray-50 dark:group-hover:bg-gray-800 
+                     last:rounded-r-lg"
+                >
                   <button
                     onClick={(e) => {
                       e.stopPropagation();

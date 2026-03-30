@@ -2,7 +2,7 @@ export default function TopTagsCard({ tags }) {
   const top3 = tags?.slice(0, 3) || [];
 
   return (
-    <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6">
+    <div className="h-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6">
       <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
         Top 3
       </h3>
