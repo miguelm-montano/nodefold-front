@@ -5,7 +5,7 @@ export default function StatsCard({ title, value, icon }) {
         {icon}
       </div>
       <div className="w-full">
-        <p className="text-ml font-medium text-black dark:text-gray-400">
+        <p className="text-ml font-medium text-black dark:text-gray-400 text-right">
           {title}
         </p>
         <p className="text-4xl font-bold text-gray-900 dark:text-white text-right w-full">
