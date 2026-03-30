@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useAdmin from "./hooks/useAdmin";
+import Profile from "../Profile/Profile";
 import AdminHeader from "./components/AdminHeader";
 import StatsCard from "./components/StatsCard";
 import UsersTable from "./components/UsersTable";
@@ -17,6 +18,7 @@ import ResourceStatsSvg from "../../assets/Resource-stats.svg";
 export default function Admin() {
   const { stats, users, admins, loading, user, handleDeleteUser } = useAdmin();
   const [selectedUser, setSelectedUser] = useState(null);
+  const [showProfile, setShowProfile] = useState(false);
 
   const resourcesPerUser =
     stats && stats.total_users
@@ -139,10 +141,12 @@ export default function Admin() {
             <CalendarCard />
 
             {/* Fila 3 derecha */}
-            <AdminProfileCard user={user} onProfileClick={() => {}} />
+            <AdminProfileCard user={user} onProfileClick={() => setShowProfile(true)} />
           </div>
         </div>
       </div>
+
+      {showProfile && <Profile onClose={() => setShowProfile(false)} />}
     </div>
   );
 }
