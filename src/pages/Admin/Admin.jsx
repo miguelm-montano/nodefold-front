@@ -9,6 +9,10 @@ import StatsRatioCard from "./components/StatsRatioCard";
 import TopTagsCard from "./components/TopTagsCard";
 import AdminProfileCard from "./components/AdminProfileCard";
 import CalendarCard from "./components/CalendarCard";
+import FolderStatsSvg from "../../assets/Folder-stats.svg";
+import UsertatsSvg from "../../assets/User-stats.svg";
+import TagStatsSvg from "../../assets/Tag-stats.svg";
+import ResourceStatsSvg from "../../assets/Resource-stats.svg";
 
 export default function Admin() {
   const { stats, users, admins, loading, user, handleDeleteUser } = useAdmin();
@@ -41,23 +45,55 @@ export default function Admin() {
         <h1 className="text-3xl font-bold">Welcome back, {user?.name}!</h1>
 
         {/* Stats cards */}
-        <div className="grid grid-cols-4 gap-4">
-          <StatsCard title="Total Users" value={stats?.total_users} icon="👤" />
+        <div className="grid grid-cols-4 gap-12 mb-6">
+          <StatsCard
+            title="Total Users"
+            value={stats?.total_users}
+            icon={
+              <img
+                src={UsertatsSvg}
+                alt="UserStats"
+                className="w-13 h-13 dark:invert"
+              />
+            }
+          />
           <StatsCard
             title="Total Folders"
             value={stats?.total_folders}
-            icon="📁"
+            icon={
+              <img
+                src={FolderStatsSvg}
+                alt="FolderStats"
+                className="w-13 h-13 dark:invert"
+              />
+            }
           />
           <StatsCard
             title="Total Resources"
             value={stats?.total_resources}
-            icon="🖼"
+            icon={
+              <img
+                src={ResourceStatsSvg}
+                alt="ResourceStats"
+                className="w-13 h-13 dark:invert"
+              />
+            }
           />
-          <StatsCard title="Total Tags" value={stats?.total_tags} icon="🏷" />
+          <StatsCard
+            title="Total Tags"
+            value={stats?.total_tags}
+            icon={
+              <img
+                src={TagStatsSvg}
+                alt="TagsStats"
+                className="w-13 h-13 dark:invert"
+              />
+            }
+          />
         </div>
 
         {/* General Dashboard */}
-        <h2 className="text-lg font-semibold text-gray-400">
+        <h2 className="text-lg font-semibold text-black dark:text-white mb-6">
           General Dashboard
         </h2>
 
@@ -74,12 +110,12 @@ export default function Admin() {
           </div>
 
           {/* Tags — col 6-8 */}
-          <div className="col-span-3">
+          <div className="col-span-2">
             <TagsTable tags={stats?.tags} />
           </div>
 
           {/* Columna derecha — col 9-12 */}
-          <div className="col-span-4 grid grid-cols-2 grid-rows-[auto_auto_auto] gap-4">
+          <div className="col-span-5 grid grid-cols-2 grid-rows-[auto_auto_auto] gap-4">
             {/* Fila 1 izquierda */}
             <StatsRatioCard
               title="Resources/Users"
@@ -88,7 +124,7 @@ export default function Admin() {
             />
 
             {/* TopTagsCard ocupa filas 1 y 2 en columna derecha */}
-            <div className="row-span-2">
+            <div className="row-span-2 h-full">
               <TopTagsCard tags={stats?.tags} />
             </div>
 
