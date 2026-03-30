@@ -9,7 +9,7 @@ export default function DeleteAccountSection({ setShowConfirmDelete }) {
             Delete Account
           </h2>
           <p className="text-sm text-gray-400 dark:text-gray-500">
-            Once your account is deleted, all data will be permanently removed.
+            Once your account is deleted, all data will be permanently removed
           </p>
         </div>
 

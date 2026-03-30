@@ -50,7 +50,7 @@ export default function Profile({ onClose }) {
             </button>
           </div>
 
-          <div className="px-8 pb-10 pt-2">
+          <div className="px-8 pb-11 pt-2">
             {/* HEADER */}
             <div className="mb-3">
               <h1 className="text-xl font-bold text-gray-900 dark:text-white">
