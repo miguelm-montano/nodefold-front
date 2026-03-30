@@ -55,7 +55,7 @@ export default function Admin() {
               <img
                 src={UsertatsSvg}
                 alt="UserStats"
-                className="w-13 h-13 dark:invert"
+                className="w-16 h-16 dark:invert"
               />
             }
           />
@@ -66,7 +66,7 @@ export default function Admin() {
               <img
                 src={FolderStatsSvg}
                 alt="FolderStats"
-                className="w-13 h-13 dark:invert"
+                className="w-15 h-15 dark:invert"
               />
             }
           />
@@ -88,15 +88,15 @@ export default function Admin() {
               <img
                 src={TagStatsSvg}
                 alt="TagsStats"
-                className="w-13 h-13 dark:invert"
+                className="w-16 h-16 dark:invert"
               />
             }
           />
         </div>
 
         {/* General Dashboard */}
-        <h2 className="text-lg font-semibold text-black dark:text-white mb-6">
-          General Dashboard
+        <h2 className="text-xl font-semibold text-black dark:text-white mb-6">
+          Overview
         </h2>
 
         {/* Grid principal */}
@@ -126,7 +126,7 @@ export default function Admin() {
             />
 
             {/* TopTagsCard ocupa filas 1 y 2 en columna derecha */}
-            <div className="row-span-2 h-full">
+            <div className="row-span-2">
               <TopTagsCard tags={stats?.tags} />
             </div>
 
@@ -141,7 +141,10 @@ export default function Admin() {
             <CalendarCard />
 
             {/* Fila 3 derecha */}
-            <AdminProfileCard user={user} onProfileClick={() => setShowProfile(true)} />
+            <AdminProfileCard
+              user={user}
+              onProfileClick={() => setShowProfile(true)}
+            />
           </div>
         </div>
       </div>
