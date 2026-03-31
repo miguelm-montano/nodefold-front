@@ -7,7 +7,7 @@ import useAuthForm from "./hooks/useAuthForm";
 
 import AuthForm from "./components/AuthForm";
 import AuthInput from "./components/AuthInput";
-import Navbar from "../../components/Navbar";
+import Navbar from "../Home/components/Navbar";
 
 export default function Login() {
   const { login } = useAuth();

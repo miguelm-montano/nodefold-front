@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
-import { useTheme } from "../context/ThemeContext";
-import { logout as logoutService } from "../services/authService";
+import { useAuth } from "../../../context/AuthContext";
+import { useTheme } from "../../../context/ThemeContext";
+import { logout as logoutService } from "../../../services/authService";
 
 export default function Navbar() {
   const { isAuthenticated, isAdmin, logout } = useAuth();
@@ -32,15 +32,6 @@ export default function Navbar() {
 
           {/* Acciones */}
           <div className="flex items-center gap-4">
-            {/* Toggle dark/light */}
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              aria-label="Toggle theme"
-            >
-              {isDark ? "🌝" : "🌚"}
-            </button>
-
             {isAuthenticated ? (
               <>
                 {isAdmin && (

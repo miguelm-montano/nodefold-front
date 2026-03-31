@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import Navbar from "../../components/Navbar";
+import Navbar from "./components/Navbar";
+import home from "../../assets/Home.svg";
 import loadingTime from "../../assets/Loading-Time.svg";
-import FeatureWhatIsNotion from "../../components/WhatIsNotion";
+import FeatureWhatIsNotion from "./components/WhatIsNotion";
 import search from "../../assets/Search.svg";
 import folders from "../../assets/Folders.svg";
 import tags from "../../assets/Tags.svg";
@@ -56,41 +57,60 @@ export default function Home() {
       <Navbar />
 
       {/* Hero */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex flex-col items-center justify-center text-center">
-        <h1 className="text-5xl sm:text-6xl font-bold tracking-tight mb-6">
-          Your creative resources,{" "}
-          <span className="text-gray-400 dark:text-gray-500">organized.</span>
-        </h1>
-        <p className="text-lm text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-10">
-          Nodefold is a minimal workspace for saving and organizing design
-          assets — fonts, palettes, images, icons and web references — all in
-          one place.
-        </p>
-        <div className="flex items-center justify-center gap-4">
-          <Link
-            to="/register"
-            className="bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-6 py-3 rounded-4xl font-medium hover:opacity-90 transition-opacity"
-          >
-            Get started for free
-          </Link>
+      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex items-center">
+        {/* CONTENIDO */}
+        <div className="relative z-10 max-w-2xl text-left -mt-30">
+          <h1 className="text-5xl sm:text-6xl font-bold tracking-tight mb-3">
+            Organize everything
+            <br /> in one place.
+          </h1>
+
+          <div className="bg-black h-8 grid place-items-center mb-2">
+            <p className="text-lm font-semibold text-white dark:text-gray-400 ">
+              Minimal workspace to manage your resources, folders and ideas
+            </p>
+          </div>
+
+          <p className="pb-10 text-gray-400">
+            For design assets — fonts, palettes, images, icons and web
+            references
+          </p>
+
+          <div className="flex items-center gap-4">
+            <Link
+              to="/register"
+              className="bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-6 py-3 rounded-4xl font-medium hover:opacity-90 transition-opacity"
+            >
+              Get started for free
+            </Link>
+          </div>
         </div>
+
+        {/* SVG BACKGROUND */}
+        <img
+          src={loadingTime}
+          alt="Loading home"
+          className="absolute right-0 top-1/2 -translate-y-1/2 w-150 pointer-events-none -mt-20"
+        />
       </section>
 
       {/* What is Notion */}
-      <section className="py-20 bg-gray-100 dark:bg-black">
+      <section className="py-20 bg-stone-100 dark:bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-white dark:bg-black py-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* LEFT SIDE */}
             <div>
-              <h2 className="text-5xl font-bold mb-8">What is Nodefold?</h2>
+              <h2 className="text-5xl font-bold mb-8 text-center">
+                What is Nodefold?
+              </h2>
 
               {/* Image placeholder */}
               <div className="w-full h-120 rounded-xl flex items-center justify-center">
                 <span className="text-gray-500 dark:text-gray-400">
                   <img
-                    src={loadingTime}
-                    alt="Loading Time"
-                    className="w-full h-122 object-cover rounded-xl dark:invert"
+                    src={home}
+                    alt="home illustration"
+                    className="w-full h-122 object-cover rounded-xl -mt-10 -ml-4"
                   />
                 </span>
               </div>
