@@ -5,6 +5,9 @@ import {
   ChevronRightIcon,
   AdjustmentsVerticalIcon,
 } from "@heroicons/react/24/outline";
+import { KeyIcon } from "@heroicons/react/24/solid";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../context/AuthContext";
 import FilterMenu from "./resources/FilterMenu";
 
 export default function DashboardHeader({
@@ -14,6 +17,8 @@ export default function DashboardHeader({
   onSearch,
   onAddResource,
 }) {
+  const { isAdmin } = useAuth();
+  const navigate = useNavigate();
   const currentIndex = folders.findIndex((f) => f.id === activeFolder?.id);
 
   const handlePrev = () => {
@@ -62,6 +67,16 @@ export default function DashboardHeader({
       >
         <PlusIcon className="w-5 h-5 dark:text-white" />
       </button>
+
+      {/* Admin panel */}
+      {isAdmin && (
+        <button
+          onClick={() => navigate("/admin")}
+          className="p-1.5 rounded-lg text-black hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        >
+          <KeyIcon className="w-4 h-4" />
+        </button>
+      )}
 
       {/* Filters */}
       <FilterMenu />
