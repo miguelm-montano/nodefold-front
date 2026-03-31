@@ -1,6 +1,6 @@
 export default function TagsTable({ tags }) {
   return (
-    <div className="min-h-153 max-h-153 flex flex-col bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6">
+    <div className="h-full flex flex-col bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6">
       <h3 className="font-semibold text-gray-900 dark:text-white mb-4 shrink-0">
         All tags registered
       </h3>

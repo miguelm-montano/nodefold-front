@@ -41,12 +41,14 @@ export default function Admin() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-white">
+    <div className="min-h-screen bg-stone-100 dark:bg-gray-950 text-gray-900 dark:text-white">
       <AdminHeader />
 
-      <div className="max-w-screen-2xl mx-auto px-8 py-1 space-y-8">
+      <div className="max-w-screen-2xl mx-auto px-12 pt-4 pb-7 space-y-8 bg-white dark:bg-gray-950 rounded-4xl">
         {/* Welcome */}
-        <h1 className="text-3xl font-bold">Welcome back, {user?.name}!</h1>
+        <h1 className="text-3xl font-bold mt-2 mb-6">
+          Welcome back, {user?.name}!
+        </h1>
 
         {/* Stats cards */}
         <div className="grid grid-cols-4 gap-12 mb-6">
@@ -97,7 +99,7 @@ export default function Admin() {
         </div>
 
         {/* General Dashboard */}
-        <h2 className="text-xl font-semibold text-black dark:text-white mb-6">
+        <h2 className="text-xl font-semibold text-black dark:text-white mb-4">
           Overview
         </h2>
 
@@ -114,12 +116,12 @@ export default function Admin() {
           </div>
 
           {/* Tags — col 6-8 */}
-          <div className="col-span-2">
+          <div className="col-span-3 h-full">
             <TagsTable tags={stats?.tags} />
           </div>
 
           {/* Columna derecha — col 9-12 */}
-          <div className="col-span-5 grid grid-cols-2 grid-rows-[auto_auto_auto] gap-4">
+          <div className="col-span-4 grid grid-cols-2 grid-rows-[10rem_10rem_16.5rem] gap-4">
             {/* Fila 1 izquierda */}
             <StatsRatioCard
               title="Resources/Users"
@@ -143,7 +145,7 @@ export default function Admin() {
             <CalendarCard />
 
             {/* Fila 3 derecha */}
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 h-full">
               <AdminProfileCard
                 user={user}
                 onProfileClick={() => setShowProfile(true)}

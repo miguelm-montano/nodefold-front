@@ -6,7 +6,7 @@ export default function CalendarCard() {
   const [selected, setSelected] = useState(new Date());
 
   return (
-    <div className="min-h-60 bg-stone-50 dark:bg-gray-900 rounded-2xl p-3 overflow-hidden w-full flex items-center justify-center transform transition-transform duration-300 hover:scale-105">
+    <div className="min-h-66 max-h-66 bg-stone-50 dark:bg-gray-900 rounded-2xl p-3 overflow-hidden w-full flex items-center justify-center transform transition-transform duration-300 hover:scale-105">
       <style>{`
         .rdp-root { margin: 0; }
         .rdp-month_caption { font-size: 0.72rem; padding-bottom: 4px; }

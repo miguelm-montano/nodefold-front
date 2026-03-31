@@ -6,11 +6,11 @@ export default function AdminsTable({ admins, onDelete }) {
   const [deleteModal, setDeleteModal] = useState(null);
 
   return (
-    <div className="min-h-65 max-h-65 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6">
-      <h3 className="font-semibold text-gray-900 dark:text-white mb-4">
+    <div className="min-h-66 max-h-66 flex flex-col bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6">
+      <h3 className="font-semibold text-gray-900 dark:text-white mb-4 shrink-0">
         All admins
       </h3>
-      <div className="overflow-y-auto max-h-72">
+      <div className="flex-1 overflow-y-auto">
         <table className="w-full text-sm">
           <thead>
             <tr className="text-left text-gray-400 border-b border-gray-100 dark:border-gray-800">

@@ -16,7 +16,7 @@ export default function AdminHeader() {
   };
 
   return (
-    <header className="flex items-center justify-between px-8 py-5">
+    <header className="flex items-center justify-between px-8 pt-5 pb-2">
       <span className="text-xl font-bold text-gray-900 dark:text-white tracking-tight">
         Nodefold
       </span>
