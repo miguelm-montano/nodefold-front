@@ -62,6 +62,7 @@ export default function DashboardHeader({
 
       {/* Add resource */}
       <button
+        data-tour="add-resource"
         onClick={onAddResource}
         className="p-1.5 rounded-lg text-gray-800 font-extrabold hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
       >

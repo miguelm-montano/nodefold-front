@@ -9,6 +9,9 @@ import ResourcePanel from "./components/ResourcePanel";
 import Profile from "../Profile/Profile";
 import { useResources } from "./hooks/useResources";
 
+import DashboardTour from "./components/DashboardTour";
+import { useTour } from "./hooks/useTour";
+
 export default function Dashboard() {
   const [folders, setFolders] = useState([]);
   const [activeFilter, setActiveFilter] = useState("all");
@@ -17,6 +20,7 @@ export default function Dashboard() {
   const [showAddResource, setShowAddResource] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [selectedResource, setSelectedResource] = useState(null);
+  const { tourActive, handleTourEnd } = useTour();
 
   const { resources, counts, fetchResources, fetchCounts } = useResources({
     activeFilter,
@@ -55,6 +59,7 @@ export default function Dashboard() {
 
   return (
     <div className="flex min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-white">
+      <DashboardTour run={tourActive} onEnd={handleTourEnd} />
       <Sidebar
         folders={folders}
         activeFilter={activeFilter}

@@ -8,6 +8,7 @@ export default function CreateFolderInput({
   return (
     <div className="px-3 mb-3 mt-4">
       <button
+        data-tour="create-folder"
         onClick={() => setShowInput(!showInput)}
         className="w-full text-left px-3 py-2 rounded-lg text-sm text-gray-400 dark:text-gray-500 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
       >
