@@ -18,7 +18,7 @@ export default function Home() {
       {/* Hero */}
       <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex items-center">
         {/* CUADRO AMARILLO */}
-        <div className="absolute top-0 left-66 w-110 h-96 bg-[#FFB514] z-0"></div>
+        <div className="absolute top-0 left-66 w-110 h-95 bg-[#FFB514] z-0"></div>
         {/* CUADRO NEGRO */}
         <div className="absolute bottom-0 left-0 w-176 h-30 bg-black z-0"></div>
         {/* CONTENIDO */}
@@ -54,12 +54,12 @@ export default function Home() {
         <img
           src={loadingTime}
           alt="Loading home"
-          className="absolute right-0 top-1/2 -translate-y-1/2 w-150 pointer-events-none -mt-20"
+          className="absolute -right-7 top-121 -translate-y-1/2 w-150 pointer-events-none -mt-20"
         />
       </section>
 
       {/* What you can do */}
-      <section className="py-20 bg-stone-100 dark:bg-black">
+      <section className="py-26 bg-stone-100 dark:bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-white dark:bg-black py-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* LEFT SIDE */}
@@ -92,6 +92,7 @@ export default function Home() {
                 }
                 title="Folder structure"
                 description="Organize everything with folders and nested spaces"
+                delay={0}
               />
 
               <FeatureWhatIsNotion
@@ -104,6 +105,7 @@ export default function Home() {
                 }
                 title="Tagging system"
                 description="Tag your resources and filter by name, type, or tag"
+                delay={150}
               />
 
               <FeatureWhatIsNotion
@@ -116,6 +118,7 @@ export default function Home() {
                 }
                 title="Smart search"
                 description="Instantly find any resource across your workspace"
+                delay={300}
               />
             </div>
           </div>
@@ -124,7 +127,7 @@ export default function Home() {
 
       {/* Master your workflow */}
       <section className="py-12 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-8">
           {/* CUADRO ROJO */}
           <div className="absolute top-0 left-0 w-25 h-80 bg-[#FF4C32]"></div>
           {/* CUADRO AZUL */}
@@ -152,7 +155,7 @@ export default function Home() {
 
       {/* The space for your tools */}
       <section className="bg-stone-100 py-20">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-8">
           <h2 className="text-3xl font-bold mb-2">The space for your tools</h2>
           <p className="mb-8">
             Keep your images, fonts, color palettes, icons, and web references

@@ -20,7 +20,7 @@ export default function Login() {
 
   const onSuccess = (res) => {
     login(res.data.token, res.data.user);
-    navigate("/dashboard");
+    navigate(res.data.user.role === "admin" ? "/admin" : "/dashboard");
   };
 
   return (

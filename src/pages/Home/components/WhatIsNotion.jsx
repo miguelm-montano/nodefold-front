@@ -1,6 +1,24 @@
-function FeatureWhatIsNotion({ icon, title, description }) {
+import { useEffect, useRef, useState } from "react";
+
+function FeatureWhatIsNotion({ icon, title, description, delay = 0 }) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
+      { threshold: 0.15 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="flex items-center gap-6 p-8 bg-neutral-50 rounded-xl border border-gray-100 dark:border-gray-700 transform transition-transform duration-300 hover:scale-105">
+    <div
+      ref={ref}
+      style={{ transitionDelay: `${delay}ms` }}
+      className={`flex items-center gap-6 p-8 bg-neutral-50 rounded-xl border border-gray-100 dark:border-gray-700 transform transition-all duration-700 hover:scale-105 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+    >
       <div className="w-16 h-16 rounded-lg flex items-center justify-center shrink-0">
         {icon}
       </div>
