@@ -9,4 +9,12 @@ button {
   cursor: pointer;
 }
 
+button[data-testid="button-primary"] {
+  border-radius: 999px !important;
+}
+
+button[data-action="back"] {
+  border-radius: 999px !important;
+}
+
 @custom-variant dark (&:where(.dark, .dark *));
