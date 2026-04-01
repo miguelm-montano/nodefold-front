@@ -10,6 +10,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import FolderView from "./pages/Folder/FolderView";
 import Profile from "./pages/Profile/Profile";
 import Admin from "./pages/Admin/Admin";
+import Error404 from "./pages/Error/Error404";
 
 function App() {
   return (
@@ -54,7 +55,7 @@ function App() {
               }
             />
 
-            <Route path="*" element={<Navigate to="/" />} />
+            <Route path="*" element={<Error404 />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>
