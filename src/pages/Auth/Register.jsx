@@ -30,10 +30,14 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-white">
+    <div className="min-h-screen flex flex-col bg-white dark:bg-gray-950 text-gray-900 dark:text-white">
       <Navbar />
 
-      <div className="flex items-center justify-center min-h-[calc(100vh-64px)] px-4">
+      <div className="flex-1 flex items-center justify-center px-4 -mt-10">
+        {/* CUADRO ROJO */}
+        <div className="absolute top-0 left-72 w-40 h-50 bg-[#FF4C32] z-0"></div>
+        {/* CUADRO AZUL */}
+        <div className="absolute bottom-0 right-0 w-150 h-20 bg-[#009BFC] z-0"></div>
         <AuthForm
           title="Create your account"
           subtitle="Start organizing your resources"

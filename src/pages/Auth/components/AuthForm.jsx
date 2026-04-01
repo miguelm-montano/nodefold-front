@@ -14,7 +14,7 @@ export default function AuthForm({
 }) {
   return (
     <div className="w-full max-w-md">
-      <h1 className="text-3xl font-bold mb-2">{title}</h1>
+      <h1 className="text-3xl font-bold mb-1">{title}</h1>
 
       <p className="text-gray-500 dark:text-gray-400 mb-8">{subtitle}</p>
 

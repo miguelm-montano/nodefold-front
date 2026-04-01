@@ -6,50 +6,9 @@ import FeatureWhatIsNotion from "./components/WhatIsNotion";
 import search from "../../assets/Search.svg";
 import folders from "../../assets/Folders.svg";
 import tags from "../../assets/Tags.svg";
-
-const resourceTypes = [
-  {
-    icon: "🖼",
-    title: "Images",
-    description:
-      "Upload images directly from your device or link external ones. Stored and displayed inside your folders.",
-  },
-  {
-    icon: "🔤",
-    title: "Fonts",
-    description:
-      "Save font references from Google Fonts or any URL. Keep your typography choices organized.",
-  },
-  {
-    icon: "🎨",
-    title: "Color Palettes",
-    description:
-      "Paste a Coolors.co URL and Nodefold automatically extracts and displays the hex color codes.",
-  },
-  {
-    icon: "🌐",
-    title: "Websites",
-    description:
-      "Bookmark any website URL as a reference. Perfect for saving design inspiration.",
-  },
-  {
-    icon: "⭐",
-    title: "Icons",
-    description:
-      "Save icon CDN links and keep all your icon resources in one place.",
-  },
-];
-
-const stack = [
-  { name: "Laravel 12", role: "Backend" },
-  { name: "Laravel Passport", role: "Auth (OAuth2)" },
-  { name: "PostgreSQL", role: "Database" },
-  { name: "React 18", role: "Frontend" },
-  { name: "Vite", role: "Build tool" },
-  { name: "Tailwind CSS", role: "Styling" },
-  { name: "Docker", role: "Containerization" },
-  { name: "Render", role: "Deployment" },
-];
+import dashboard from "../../assets/Dashboard.png";
+import alien from "../../assets/Alien.jpg";
+import fontsColors from "../../assets/FontsColors.png";
 
 export default function Home() {
   return (
@@ -58,16 +17,21 @@ export default function Home() {
 
       {/* Hero */}
       <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex items-center">
+        {/* CUADRO AMARILLO */}
+        <div className="absolute top-0 left-66 w-110 h-96 bg-[#FFB514] z-0"></div>
+        {/* CUADRO NEGRO */}
+        <div className="absolute bottom-0 left-0 w-176 h-30 bg-black z-0"></div>
         {/* CONTENIDO */}
         <div className="relative z-10 max-w-2xl text-left -mt-30">
-          <h1 className="text-5xl sm:text-6xl font-bold tracking-tight mb-3">
+          <h1 className="text-8xl font-bold tracking-tight mb-3">
             Organize everything
             <br /> in one place.
           </h1>
 
-          <div className="bg-black h-8 grid place-items-center mb-2">
+          <div className="bg-black h-10 grid place-items-center mb-2">
             <p className="text-lm font-semibold text-white dark:text-gray-400 ">
-              Minimal workspace to manage your resources, folders and ideas
+              Nodefol is a minimal workspace to manage your resources, folders
+              and ideas
             </p>
           </div>
 
@@ -94,14 +58,14 @@ export default function Home() {
         />
       </section>
 
-      {/* What is Notion */}
+      {/* What you can do */}
       <section className="py-20 bg-stone-100 dark:bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-white dark:bg-black py-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* LEFT SIDE */}
             <div>
               <h2 className="text-5xl font-bold mb-8 text-center">
-                What is Nodefold?
+                What you can do?
               </h2>
 
               {/* Image placeholder */}
@@ -127,7 +91,7 @@ export default function Home() {
                   />
                 }
                 title="Folder structure"
-                description="Organize everything into parent folders and subfolders."
+                description="Organize everything with folders and nested spaces"
               />
 
               <FeatureWhatIsNotion
@@ -139,7 +103,7 @@ export default function Home() {
                   />
                 }
                 title="Tagging system"
-                description="Tag your resources and filter by tag, name or type."
+                description="Tag your resources and filter by name, type, or tag"
               />
 
               <FeatureWhatIsNotion
@@ -151,57 +115,96 @@ export default function Home() {
                   />
                 }
                 title="Smart search"
-                description="Quickly find any resource across your workspace."
+                description="Instantly find any resource across your workspace"
               />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Cómo funciona */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-16">How it works</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {resourceTypes.map((type) => (
-              <div
-                key={type.title}
-                className="p-6 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-gray-400 dark:hover:border-gray-500 transition-colors"
-              >
-                <div className="text-3xl mb-4">{type.icon}</div>
-                <h3 className="font-semibold mb-2">{type.title}</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  {type.description}
-                </p>
-              </div>
-            ))}
+      {/* Master your workflow */}
+      <section className="py-12 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4">
+          {/* CUADRO ROJO */}
+          <div className="absolute top-0 left-0 w-25 h-80 bg-[#FF4C32]"></div>
+          {/* CUADRO AZUL */}
+          <div className="absolute bottom-0 right-0 w-20 h-20 bg-[#009BFC]"></div>
+          {/* TEXT */}
+          <div className="max-w-2xl">
+            <h2 className="text-4xl font-bold mb-2">Master your workflow</h2>
+            <p className="text-gray-600 dark:text-gray-400">
+              Take full control of your resources with a clean and intuitive
+              interface. <br />
+              Organize, explore and manage everything without friction.
+            </p>
+          </div>
+
+          {/* IMAGE */}
+          <div className="mt-4 flex justify-center">
+            <img
+              src={dashboard}
+              alt="Dashboard example"
+              className="w-full max-w-8xl"
+            />
           </div>
         </div>
       </section>
 
       {/* The space for your tools */}
-      <section className="bg-gray-50 dark:bg-gray-900 py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold">The space for your tools</h2>
-          <p className="mb-16">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel
-            est quis ipsum fermentum vehicula.
+      <section className="bg-stone-100 py-20">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-2">The space for your tools</h2>
+          <p className="mb-8">
+            Keep your images, fonts, color palettes, icons, and web references
+            organized in one place. <br />
+            Find inspiration faster and manage your workflow with ease.
           </p>
 
-          <div className="flex gap-8 h-[600px]">
+          <div className="flex gap-8 h-150">
             {/* Tarjeta vertical izquierda */}
-            <div className="w-1/3 rounded-2xl bg-gray-200 dark:bg-gray-700 flex-shrink-0 h-full" />
+            <div className="w-1/3 rounded-2xl bg-gray-200 dark:bg-gray-700 shrink-0 h-full transform transition-transform duration-300 hover:scale-105">
+              <img
+                src={alien}
+                alt="Alien illustration"
+                className="w-full h-full object-cover rounded-2xl"
+              />
+            </div>
 
             {/* Columna derecha */}
             <div className="flex-1 flex flex-col gap-8 h-full">
               {/* Dos tarjetas cuadradas arriba */}
               <div className="flex gap-8 flex-1">
-                <div className="flex-1 rounded-2xl bg-gray-300 dark:bg-gray-600" />
-                <div className="flex-1 rounded-2xl bg-gray-300 dark:bg-gray-600" />
+                <div className="flex-1">
+                  <div className="aspect-square rounded-2xl overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                    <img
+                      src={fontsColors}
+                      alt="Fonts Colors"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex-1">
+                  <div className="aspect-square rounded-2xl bg-[#F05D23] flex flex-col justify-center px-6 transform transition-transform duration-300 hover:scale-105">
+                    <div className="flex flex-col gap-2 text-white font-extrabold leading-tight text-5xl max-w-[70%]">
+                      <p>Fonts</p>
+                      <p>Webs</p>
+                      <p>Icons</p>
+                      <p>Images</p>
+                      <p>Colors</p>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* Tarjeta horizontal abajo */}
-              <div className="rounded-2xl bg-gray-200 dark:bg-gray-700 h-40 flex-shrink-0" />
+              <div className="rounded-2xl overflow-hidden h-40 shrink-0 flex transform transition-transform duration-300 hover:scale-105">
+                <div className="w-1/3 bg-[#FFB514]" />
+                <div className="w-1/4 bg-black" />
+                <div className="w-1/6 bg-white" />
+                <div className="w-1/6 bg-[#009BFC]" />
+                <div className="flex-1 bg-[#FF4C32]" />
+              </div>
             </div>
           </div>
         </div>

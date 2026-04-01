@@ -24,12 +24,18 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-white">
+    <div className="min-h-screen flex flex-col bg-white dark:bg-gray-950 text-gray-900 dark:text-white">
       <Navbar />
 
-      <div className="flex items-center justify-center min-h-[calc(100vh-64px)] px-4">
+      <div className="relative flex flex-1 items-center justify-center px-4 -mt-10">
+        {/* CUADRO AMARILLO */}
+        <div className="absolute top-0 left-0 w-96 h-60 bg-[#FFB514] z-0"></div>
+        {/* CUADRO NEGRO */}
+        <div className="absolute bottom-0 right-0 w-176 h-20 bg-black z-0"></div>
+        {/* CUADRO ROJO */}
+        <div className="absolute bottom-20 right-0 w-30 h-30 bg-[#FF4C32] z-0"></div>
         <AuthForm
-          title="Welcome back"
+          title="Welcome back!"
           subtitle="Sign in to your account"
           error={error}
           loading={loading}
@@ -37,7 +43,7 @@ export default function Login() {
           buttonText="Sign in"
           footerText="Don't have an account?"
           footerLink="/register"
-          footerLinkText="Create one"
+          footerLinkText="Register here"
         >
           <AuthInput
             label="Email"
