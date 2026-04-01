@@ -4,7 +4,7 @@ export default function SidebarFilters({
   onFilterChange,
 }) {
   return (
-    <div className="px-3 py-4 space-y-1 mt-2">
+    <div data-tour="sidebar-filters" className="px-3 py-4 space-y-1 mt-2">
       {filters.map((filter) => (
         <button
           key={filter.key}
