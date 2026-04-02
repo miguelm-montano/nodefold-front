@@ -37,16 +37,16 @@ export default function DashboardHeader({
         <button
           onClick={handlePrev}
           disabled={currentIndex <= 0}
-          className="p-1 rounded text-gray-400 hover:text-gray-900 dark:hover:text-white disabled:opacity-30 transition-colors"
+          className="p-1 rounded text-gray-500 hover:text-gray-900 dark:hover:text-white disabled:opacity-30 transition-colors"
         >
-          <ChevronLeftIcon className="w-4 h-4" />
+          <ChevronLeftIcon className="w-5 h-5" />
         </button>
         <button
           onClick={handleNext}
           disabled={currentIndex >= folders.length - 1}
-          className="p-1 rounded text-gray-400 hover:text-gray-900 dark:hover:text-white disabled:opacity-30 transition-colors"
+          className="p-1 rounded text-gray-500 hover:text-gray-900 dark:hover:text-white disabled:opacity-30 transition-colors"
         >
-          <ChevronRightIcon className="w-4 h-4" />
+          <ChevronRightIcon className="w-5 h-5" />
         </button>
       </div>
 
