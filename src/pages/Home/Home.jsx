@@ -59,7 +59,7 @@ export default function Home() {
       </section>
 
       {/* What you can do */}
-      <section className="py-26 bg-stone-100 dark:bg-black">
+      <section id="features" className="py-26 bg-stone-100 dark:bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-white dark:bg-black py-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* LEFT SIDE */}
@@ -126,7 +126,7 @@ export default function Home() {
       </section>
 
       {/* Master your workflow */}
-      <section className="py-12 relative overflow-hidden">
+      <section id="how-works" className="py-12 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-8">
           {/* RED */}
           <div className="absolute top-0 left-0 w-25 h-80 bg-[#FF4C32]"></div>
@@ -154,7 +154,7 @@ export default function Home() {
       </section>
 
       {/* The space for your tools */}
-      <section className="bg-stone-100 py-20">
+      <section id="workspace" className="bg-stone-100 py-20">
         <div className="max-w-7xl mx-auto px-8">
           <h2 className="text-3xl font-bold mb-2">The space for your tools</h2>
           <p className="mb-8">

@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
 import { useTheme } from "../../../context/ThemeContext";
 import { logout as logoutService } from "../../../services/authService";
@@ -7,6 +7,8 @@ export default function Navbar() {
   const { isAuthenticated, isAdmin, logout } = useAuth();
   const { isDark, toggleTheme } = useTheme();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const isHome = pathname === "/";
 
   const handleLogout = async () => {
     try {
@@ -29,6 +31,30 @@ export default function Navbar() {
           >
             Nodefold
           </Link>
+
+          {/* Nav links — solo en home */}
+          {isHome && !isAuthenticated && (
+            <div className="flex items-center gap-18">
+              <a
+                href="#features"
+                className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+              >
+                Features
+              </a>
+              <a
+                href="#how-works"
+                className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+              >
+                How it works
+              </a>
+              <a
+                href="#workspace"
+                className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+              >
+                Workspace
+              </a>
+            </div>
+          )}
 
           {/* Acciones */}
           <div className="flex items-center gap-4">
