@@ -4,12 +4,15 @@ import DeleteSvg from "../../../assets/Delete.svg";
 export default function ConfirmDeleteModal({ type, name, onConfirm, onClose }) {
   const isFolder = type === "folder";
   const isUser = type === "user";
+  const isOwnAccount = type === "own-account";
 
   const message = isFolder
     ? "This folder and all resources will be permanently removed"
     : isUser
       ? "The account will be permanently removed"
-      : "The resource will be permanently removed";
+      : isOwnAccount
+        ? "All your folders and resources will be permanently deleted"
+        : "The resource will be permanently removed";
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4">
@@ -21,7 +24,11 @@ export default function ConfirmDeleteModal({ type, name, onConfirm, onClose }) {
 
         {/* Texto */}
         <div className="text-center mb-6">
-          {isUser ? (
+          {isOwnAccount ? (
+            <h2 className="text-base font-semibold dark:text-white mb-1">
+              Are you sure you want to delete your account?
+            </h2>
+          ) : isUser ? (
             <>
               <h2 className="text-base font-semibold dark:text-white mb-1">
                 Are you sure you want to delete
