@@ -84,7 +84,7 @@ export default function UsersTable({ users, onDelete, onUserClick }) {
 
       {deleteModal && (
         <ConfirmDeleteModal
-          type="resource"
+          type="user"
           name={deleteModal.name}
           onConfirm={async () => {
             await onDelete(deleteModal.id);

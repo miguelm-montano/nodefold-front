@@ -6,7 +6,7 @@ import FeatureWhatIsNotion from "./components/WhatIsNotion";
 import search from "../../assets/Search.svg";
 import folders from "../../assets/Folders.svg";
 import tags from "../../assets/Tags.svg";
-import dashboard from "../../assets/Dashboard.png";
+import dashboard from "../../assets/Dashboard.webp";
 import alien from "../../assets/Alien.jpg";
 import fontsColors from "../../assets/FontsColors.png";
 
@@ -17,11 +17,11 @@ export default function Home() {
 
       {/* Hero */}
       <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex items-center">
-        {/* CUADRO AMARILLO */}
+        {/* YELLOW */}
         <div className="absolute top-0 left-66 w-110 h-95 bg-[#FFB514] z-0"></div>
-        {/* CUADRO NEGRO */}
+        {/* BLACK */}
         <div className="absolute bottom-0 left-0 w-176 h-30 bg-black z-0"></div>
-        {/* CONTENIDO */}
+        {/* CONTENT */}
         <div className="relative z-10 max-w-2xl text-left -mt-30">
           <h1 className="text-8xl font-bold tracking-tight mb-3">
             Organize everything
@@ -30,7 +30,7 @@ export default function Home() {
 
           <div className="bg-black h-10 grid place-items-center mb-2">
             <p className="text-lm font-semibold text-white dark:text-gray-400 ">
-              Nodefol is a minimal workspace to manage your resources, folders
+              Nodefold is a minimal workspace to manage your resources, folders
               and ideas
             </p>
           </div>
@@ -59,7 +59,7 @@ export default function Home() {
       </section>
 
       {/* What you can do */}
-      <section className="py-26 bg-stone-100 dark:bg-black">
+      <section id="features" className="py-26 bg-stone-100 dark:bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-white dark:bg-black py-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* LEFT SIDE */}
@@ -104,7 +104,7 @@ export default function Home() {
                   />
                 }
                 title="Tagging system"
-                description="Tag your resources and filter by name, type, or tag"
+                description="Tag your resources and filter by name, type or tag"
                 delay={150}
               />
 
@@ -126,11 +126,11 @@ export default function Home() {
       </section>
 
       {/* Master your workflow */}
-      <section className="py-12 relative overflow-hidden">
+      <section id="how-works" className="py-12 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-8">
-          {/* CUADRO ROJO */}
+          {/* RED */}
           <div className="absolute top-0 left-0 w-25 h-80 bg-[#FF4C32]"></div>
-          {/* CUADRO AZUL */}
+          {/* BLUE */}
           <div className="absolute bottom-0 right-0 w-20 h-20 bg-[#009BFC]"></div>
           {/* TEXT */}
           <div className="max-w-2xl">
@@ -147,18 +147,18 @@ export default function Home() {
             <img
               src={dashboard}
               alt="Dashboard example"
-              className="w-full max-w-8xl"
+              className="w-full max-w-7xl"
             />
           </div>
         </div>
       </section>
 
       {/* The space for your tools */}
-      <section className="bg-stone-100 py-20">
+      <section id="workspace" className="bg-stone-100 py-20">
         <div className="max-w-7xl mx-auto px-8">
           <h2 className="text-3xl font-bold mb-2">The space for your tools</h2>
           <p className="mb-8">
-            Keep your images, fonts, color palettes, icons, and web references
+            Keep your images, fonts, color palettes, icons and web references
             organized in one place. <br />
             Find inspiration faster and manage your workflow with ease.
           </p>
@@ -173,9 +173,9 @@ export default function Home() {
               />
             </div>
 
-            {/* Columna derecha */}
+            {/* Right column */}
             <div className="flex-1 flex flex-col gap-8 h-full">
-              {/* Dos tarjetas cuadradas arriba */}
+              {/* TWO CARDS */}
               <div className="flex gap-8 flex-1">
                 <div className="flex-1">
                   <div className="aspect-square rounded-2xl overflow-hidden transform transition-transform duration-300 hover:scale-105">
@@ -200,7 +200,7 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Tarjeta horizontal abajo */}
+              {/* Horizontal card */}
               <div className="rounded-2xl overflow-hidden h-40 shrink-0 flex transform transition-transform duration-300 hover:scale-105">
                 <div className="w-1/3 bg-[#FFB514]" />
                 <div className="w-1/4 bg-black" />

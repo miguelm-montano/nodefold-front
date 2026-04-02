@@ -69,7 +69,7 @@ export default function AdminsTable({ admins, onDelete }) {
 
       {deleteModal && (
         <ConfirmDeleteModal
-          type="resource"
+          type="user"
           name={deleteModal.name}
           onConfirm={async () => {
             await onDelete(deleteModal.id);

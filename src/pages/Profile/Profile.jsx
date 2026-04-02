@@ -90,8 +90,7 @@ export default function Profile({ onClose }) {
       {/* DELETE MODAL */}
       {profile.showConfirmDelete && (
         <ConfirmDeleteModal
-          type="resource"
-          name={`${profile.name}'s account`}
+          type="own-account"
           onConfirm={profile.handleDeleteAccount}
           onClose={() => profile.setShowConfirmDelete(false)}
         />
