@@ -3,12 +3,13 @@ import DeleteSvg from "../../../assets/Delete.svg";
 
 export default function ConfirmDeleteModal({ type, name, onConfirm, onClose }) {
   const isFolder = type === "folder";
+  const isUser = type === "user";
 
   const message = isFolder
     ? "This folder and all resources will be permanently removed"
-    : "The resource will be permanently removed";
-
-  const question = "Are you sure you want to delete:";
+    : isUser
+      ? "The account will be permanently removed"
+      : "The resource will be permanently removed";
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4">
@@ -20,13 +21,28 @@ export default function ConfirmDeleteModal({ type, name, onConfirm, onClose }) {
 
         {/* Texto */}
         <div className="text-center mb-6">
-          <h2 className="text-base font-semibold dark:text-white mb-1">
-            {question}
-          </h2>
-          {name && (
-            <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
-              "{name}"
-            </p>
+          {isUser ? (
+            <>
+              <h2 className="text-base font-semibold dark:text-white mb-1">
+                Are you sure you want to delete
+              </h2>
+              {name && (
+                <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
+                  {name}'s account?
+                </p>
+              )}
+            </>
+          ) : (
+            <>
+              <h2 className="text-base font-semibold dark:text-white mb-1">
+                Are you sure you want to delete:
+              </h2>
+              {name && (
+                <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
+                  "{name}"
+                </p>
+              )}
+            </>
           )}
           <p className="text-sm text-gray-400 dark:text-gray-500">{message}</p>
         </div>
