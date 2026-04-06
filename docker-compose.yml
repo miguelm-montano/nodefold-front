@@ -1,0 +1,45 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: nodefold
+      POSTGRES_USER: nodefold
+      POSTGRES_PASSWORD: nodefold_secret
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nodefold"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: ../nodefold-api
+    environment:
+      APP_KEY: base64:UMmzZOnRlG829qWJly6lFB6CuRHnkd2rzZkP2onfqEc=
+      APP_ENV: local
+      APP_DEBUG: "true"
+      APP_URL: http://localhost:8000
+      DATABASE_URL: postgresql://nodefold:nodefold_secret@db:5432/nodefold
+    ports:
+      - "8000:10000"
+    volumes:
+      - api_storage:/var/www/storage/app
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: .
+      args:
+        VITE_API_URL: http://localhost:8000/api/v1
+    ports:
+      - "5173:10000"
+    depends_on:
+      - api
+
+volumes:
+  db_data:
+  api_storage:
