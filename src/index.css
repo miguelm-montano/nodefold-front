@@ -17,4 +17,8 @@ button[data-action="back"] {
   border-radius: 999px !important;
 }
 
+[data-action="primary"] {
+  padding: 8px 20px !important;
+}
+
 @custom-variant dark (&:where(.dark, .dark *));

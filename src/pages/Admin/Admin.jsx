@@ -116,7 +116,7 @@ export default function Admin() {
           </div>
 
           {/* Tags — col 6-8 */}
-          <div className="col-span-3 h-full">
+          <div className="col-span-3 h-154">
             <TagsTable tags={stats?.tags} />
           </div>
 

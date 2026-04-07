@@ -1,6 +1,7 @@
 import { Joyride, STATUS, EVENTS } from "react-joyride";
 import UploadModalGif from "../../../assets/UploadModal.gif";
 import SideBar from "../../../assets/SideBar.png";
+import Sources from "../../../assets/Sources.png";
 
 const steps = [
   {
@@ -20,7 +21,7 @@ const steps = [
   },
   {
     target: "body",
-    title: "Upload modal",
+    title: "Upload resources",
     content: (
       <div>
         <img
@@ -45,6 +46,32 @@ const steps = [
   },
   {
     target: "body",
+    title: "Where to get resources",
+    content: (
+      <div>
+        <img
+          src={Sources}
+          alt="Sources detail panel demo"
+          style={{ borderRadius: "8px", marginBottom: "8px", width: "100%" }}
+        />
+        <p>
+          <b>Nodefold</b> lets you save creative assets from these free online
+          sources. Just copy the link of what you want to save here. Images can
+          also be uploaded from your device
+        </p>
+      </div>
+    ),
+    placement: "center",
+    styles: {
+      tooltip: {
+        width: "580px",
+        paddingLeft: "32px",
+        paddingRight: "32px",
+      },
+    },
+  },
+  {
+    target: "body",
     title: "Resource detail panel",
     content: (
       <div>
@@ -56,7 +83,7 @@ const steps = [
         <p>
           Click any resource to open the detail panel on the right. From there
           you can edit the title, description, URL and tags — or delete the
-          resource.
+          resource
         </p>
       </div>
     ),
@@ -73,7 +100,7 @@ const steps = [
     target: '[data-tour="sidebar-filters"]',
     title: "Filter your resources",
     content:
-      "Use All, Tagged and Untagged to quickly find what you're looking for across all your folders.",
+      "Use All, Tagged and Untagged to quickly find what you're looking for across all your folders",
     placement: "right",
   },
 ];
@@ -115,6 +142,9 @@ export default function DashboardTour({ run, onEnd }) {
         },
         tooltipFooter: {
           justifyContent: "space-between",
+        },
+        buttonNext: {
+          padding: "8px 20px !important",
         },
       }}
     />
