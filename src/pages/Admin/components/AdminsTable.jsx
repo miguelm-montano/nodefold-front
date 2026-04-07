@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import ConfirmDeleteModal from "../../Dashboard/components/ConfirmDeleteModal";
+import { useAuth } from "../../../context/AuthContext";
 
 export default function AdminsTable({ admins, onDelete }) {
+  const { user: currentUser } = useAuth();
   const [deleteModal, setDeleteModal] = useState(null);
 
   return (
@@ -50,16 +52,18 @@ export default function AdminsTable({ admins, onDelete }) {
                 </td>
 
                 <td
-                  className="py-2 
-                  group-hover:bg-gray-50 dark:group-hover:bg-gray-800 
+                  className="py-2
+                  group-hover:bg-gray-50 dark:group-hover:bg-gray-800
                   last:rounded-r-lg"
                 >
-                  <button
-                    onClick={() => setDeleteModal(admin)}
-                    className="text-red-400 hover:text-red-600 transition-colors p-1"
-                  >
-                    <TrashIcon className="w-4 h-4" />
-                  </button>
+                  {admin.id !== currentUser?.id && (
+                    <button
+                      onClick={() => setDeleteModal(admin)}
+                      className="text-red-400 hover:text-red-600 transition-colors p-1"
+                    >
+                      <TrashIcon className="w-4 h-4" />
+                    </button>
+                  )}
                 </td>
               </tr>
             ))}
