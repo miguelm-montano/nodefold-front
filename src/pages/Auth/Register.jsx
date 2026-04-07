@@ -22,6 +22,17 @@ export default function Register() {
         password_confirmation: "",
       },
       registerService,
+      (form) => {
+        const errs = {};
+        if (!/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,15}$/.test(form.password)) {
+          errs.password = [
+            "Password must have at least 8 characters and include uppercase, lowercase and a number",
+          ];
+        } else if (form.password !== form.password_confirmation) {
+          errs.password_confirmation = ["Passwords do not match"];
+        }
+        return errs;
+      },
     );
 
   const onSuccess = (res) => {
@@ -84,6 +95,7 @@ export default function Register() {
             value={form.password_confirmation}
             onChange={handleChange}
             placeholder="••••••••"
+            error={errors.password_confirmation?.[0]}
           />
         </AuthForm>
       </div>

@@ -178,7 +178,7 @@ The app will be available at `http://localhost:5173` and the API at `http://loca
 To build and run only the frontend container, pass the API URL as a build argument:
 
 ```bash
-docker build --build-arg VITE_API_URL=https://your-api-url/api/v1 -t nodefold-front .
+docker build --build-arg VITE_API_URL=http://localhost:8000/api/v1 -t nodefold-front .
 docker run -p 5173:10000 nodefold-front
 ```
 

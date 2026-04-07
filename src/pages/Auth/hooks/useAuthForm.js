@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function useAuthForm(initialState, submitFn) {
+export default function useAuthForm(initialState, submitFn, validate) {
   const [form, setForm] = useState(initialState);
   const [error, setError] = useState(null);
   const [errors, setErrors] = useState({});
@@ -23,6 +23,15 @@ export default function useAuthForm(initialState, submitFn) {
       setErrors({ email: ["Invalid email format"] });
       setLoading(false);
       return;
+    }
+
+    if (validate) {
+      const clientErrors = validate(form);
+      if (Object.keys(clientErrors).length > 0) {
+        setErrors(clientErrors);
+        setLoading(false);
+        return;
+      }
     }
 
     try {
