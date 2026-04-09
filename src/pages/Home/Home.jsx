@@ -9,6 +9,7 @@ import tags from "../../assets/Tags.svg";
 import dashboard from "../../assets/Dashboard.webp";
 import alien from "../../assets/Alien.jpg";
 import fontsColors from "../../assets/FontsColors.png";
+import ResourceSources from "./components/ResourceSources";
 
 export default function Home() {
   return (
@@ -18,9 +19,9 @@ export default function Home() {
       {/* Hero */}
       <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex items-center">
         {/* YELLOW */}
-        <div className="absolute top-0 left-66 w-110 h-95 bg-[#FFB514] z-0"></div>
+        <div className="hidden xl:block absolute top-0 left-66 w-110 h-95 bg-[#FFB514] z-0"></div>
         {/* BLACK */}
-        <div className="absolute bottom-0 left-0 w-176 h-30 bg-black z-0"></div>
+        <div className="hidden xl:block absolute bottom-0 left-0 w-176 h-30 bg-black z-0"></div>
         {/* CONTENT */}
         <div className="relative z-10 max-w-2xl text-left -mt-30">
           <h1 className="text-8xl font-bold tracking-tight mb-3">
@@ -43,7 +44,7 @@ export default function Home() {
           <div className="flex items-center gap-4">
             <Link
               to="/register"
-              className="bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-6 py-3 rounded-4xl font-medium hover:opacity-90 transition-opacity"
+              className="bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-6 py-3 rounded-4xl font-medium hover:opacity-90 transform transition-transform duration-300 hover:scale-105"
             >
               Get started for free
             </Link>
@@ -54,7 +55,7 @@ export default function Home() {
         <img
           src={loadingTime}
           alt="Loading home"
-          className="absolute -right-7 top-121 -translate-y-1/2 w-150 pointer-events-none -mt-20"
+          className="absolute -right-7 top-121 -translate-y-1/2 w-150 pointer-events-none -mt-20 hidden xl:block"
         />
       </section>
 
@@ -129,9 +130,9 @@ export default function Home() {
       <section id="how-works" className="py-12 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-8">
           {/* RED */}
-          <div className="absolute top-0 left-0 w-25 h-80 bg-[#FF4C32]"></div>
+          <div className="hidden xl:block absolute top-0 left-0 w-25 h-80 bg-[#FF4C32]"></div>
           {/* BLUE */}
-          <div className="absolute bottom-0 right-0 w-20 h-20 bg-[#009BFC]"></div>
+          <div className="hidden xl:block absolute bottom-0 right-0 w-20 h-20 bg-[#009BFC]"></div>
           {/* TEXT */}
           <div className="max-w-2xl">
             <h2 className="text-4xl font-bold mb-2">Master your workflow</h2>
@@ -156,7 +157,7 @@ export default function Home() {
       {/* The space for your tools */}
       <section id="workspace" className="bg-stone-100 py-20">
         <div className="max-w-7xl mx-auto px-8">
-          <h2 className="text-3xl font-bold mb-2">The space for your tools</h2>
+          <h2 className="text-4xl font-bold mb-2">The space for your tools</h2>
           <p className="mb-8">
             Keep your images, fonts, color palettes, icons and web references
             organized in one place. <br />
@@ -212,6 +213,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Where to get resources */}
+      <ResourceSources />
 
       {/* Footer */}
       <footer className="border-t border-gray-200 dark:border-gray-800 py-8">
